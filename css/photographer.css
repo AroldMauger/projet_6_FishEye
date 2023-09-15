@@ -89,7 +89,7 @@ form input {
 .name-in-header {
     font-size: 64px;
     color:#D3573C;
-    margin-bottom: 0px;
+    margin: 0px;
 }
 
 .location-in-header {
@@ -119,4 +119,8 @@ form input {
 
 .button-header {
     margin:130px;
+}
+
+.main_photographer_filter h2 {
+    margin-top: 20px;
 }

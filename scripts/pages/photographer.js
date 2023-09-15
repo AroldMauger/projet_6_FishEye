@@ -3,6 +3,7 @@ const photographerId = urlParams.get('id');
 const infoPhotographer = document.querySelector(".info-photographer");
 const photographerHeader = document.querySelector(".photograph-header")
 const headerInfo = document.querySelector(".header-info")
+const mediasContainer = document.querySelector(".medias")
 
 // Fonction pour afficher les détails du photographe
 async function displayPhotographerInfo(id) {
@@ -46,3 +47,32 @@ async function displayPhotographerInfo(id) {
 // On appelle la fonction pour afficher les détails du photographe avec l'ID récupéré de l'URL
 displayPhotographerInfo(photographerId);
 
+
+// Fonction pour afficher les détails du photographe
+async function displayPhotographerMedias(id) {
+    const response = await fetch('/data/photographers.json'); 
+    const photographersData = await response.json();
+    const photographers = photographersData.photographers;
+    const medias = photographersData.media;
+
+    const photographer = photographers.find(photographer => photographer.id === parseInt(id));
+    const media = medias.find(media => media.id === parseInt(id));
+
+
+    // On affiche les informations du photographe
+    for (let i = 0; i < medias.length; i++) {
+        const media = medias[i];
+
+        if(photographer.id === media.photographerId) {
+
+
+        const mediaPhotographer = document.createElement("p");
+        mediaPhotographer.textContent = media.title;
+
+        mediasContainer.appendChild(mediaPhotographer);
+     }
+    }
+}
+
+// On appelle la fonction pour afficher les détails du photographe avec l'ID récupéré de l'URL
+displayPhotographerMedias(photographerId);
