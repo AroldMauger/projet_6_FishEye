@@ -56,7 +56,6 @@ async function displayPhotographerMedias(id) {
     const medias = photographersData.media;
 
     const photographer = photographers.find(photographer => photographer.id === parseInt(id));
-    const media = medias.find(media => media.id === parseInt(id));
 
 
     // On affiche les informations du photographe
@@ -65,11 +64,40 @@ async function displayPhotographerMedias(id) {
 
         if(photographer.id === media.photographerId) {
 
+        const cardContainer = document.createElement("div");
+        cardContainer.classList.add("card-container");
 
-        const mediaPhotographer = document.createElement("p");
-        mediaPhotographer.textContent = media.title;
+        const likesContainer = document.createElement("div");
+        likesContainer.classList.add("likes-container");
+        const titleContainer = document.createElement("div");
+        titleContainer.classList.add("title-container");
 
-        mediasContainer.appendChild(mediaPhotographer);
+        const mediaFromPhotographer= document.createElement("img");
+        mediaFromPhotographer.setAttribute("src", `assets/Photographers_ID_Photos/${media.image}`); // Assurez-vous que le chemin est correct
+        mediaFromPhotographer.classList.add("photo-from-photographer");
+
+        const titleMedia = document.createElement("p");
+        titleMedia.textContent = media.title;
+
+        const heartIcone = document.createElement("i");
+        heartIcone.className ="fa-solid fa-heart";
+
+        const likesPhotographer = document.createElement("span");
+        likesPhotographer.textContent = media.likes;
+
+
+        likesContainer.appendChild(likesPhotographer);
+
+
+        titleContainer.appendChild(likesContainer);
+        titleContainer.appendChild(titleMedia);
+        likesContainer.appendChild(heartIcone);
+
+        cardContainer.appendChild(titleContainer);
+        cardContainer.appendChild(mediaFromPhotographer);
+
+        mediasContainer.appendChild(cardContainer);
+      
      }
     }
 }

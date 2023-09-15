@@ -124,3 +124,44 @@ form input {
 .main_photographer_filter h2 {
     margin-top: 20px;
 }
+
+.medias {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    gap: 20px 90px;
+}
+
+.photo-from-photographer {
+  object-fit: cover;
+  width: 350px;
+  height: 300px; 
+}
+
+.card-container {
+    width: 350px;
+    height: 350px; 
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: hidden;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    color: #901C1C;
+    font-size: 24px;
+}
+
+.fa-heart {
+    font-size: 15px;
+    color:#901C1C;
+}
+
+.likes-container {
+    display: flex;
+    align-items: center;
+}
