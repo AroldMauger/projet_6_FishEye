@@ -76,3 +76,7 @@ form input {
     border: none;
     border-radius: 5px;
 }
+
+.photo-in-header {
+    width: 100px;
+}
