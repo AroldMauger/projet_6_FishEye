@@ -77,6 +77,46 @@ form input {
     border-radius: 5px;
 }
 
+
+
+.photograph-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.name-in-header {
+    font-size: 64px;
+    color:#D3573C;
+    margin-bottom: 0px;
+}
+
+.location-in-header {
+    color: #901C1C;
+    font-size: 24px;
+    margin:0px;
+    margin-top: 16px;
+}
+
 .photo-in-header {
-    width: 100px;
+    margin: 50px;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit:cover;
+}
+
+.tagline-in-header {
+    margin-top: 19px;
+    color: #525252;
+    font-size: 18px;
+}
+
+.header-info {
+    margin-left:50px;
+}
+
+.button-header {
+    margin:130px;
 }

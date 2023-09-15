@@ -16,7 +16,19 @@ async function displayPhotographerInfo(id) {
 
         // On affiche les informations du photographe
         const namePhotographer = document.createElement("p");
-        namePhotographer.textContent = "My name is " + photographer.name;
+        namePhotographer.textContent = photographer.name;
+        namePhotographer.classList.add("name-in-header");
+
+
+        const locationPhotographer = document.createElement("p")
+        locationPhotographer.textContent = photographer.city + " , " + photographer.country;
+        locationPhotographer.classList.add("location-in-header");
+
+
+        const taglinePhotographer = document.createElement('p');
+        taglinePhotographer.textContent = photographer.tagline;
+        taglinePhotographer.classList.add("tagline-in-header");
+
 
         const photoPhotographer = document.createElement("img");
         photoPhotographer.setAttribute("src", `assets/photographers/${photographer.portrait}`); // Assurez-vous que le chemin est correct
@@ -24,6 +36,9 @@ async function displayPhotographerInfo(id) {
         photoPhotographer.classList.add("photo-in-header")
 
         headerInfo.appendChild(namePhotographer);
+        headerInfo.appendChild(locationPhotographer);
+        headerInfo.appendChild(taglinePhotographer);
+
         photographerHeader.appendChild(photoPhotographer);
     
 }
