@@ -128,8 +128,6 @@ form input {
 .medias {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-
     gap: 20px 90px;
 }
 
@@ -156,12 +154,18 @@ form input {
     font-size: 24px;
 }
 
+.title-container p {
+   width: 280px;
+}
+
 .fa-heart {
-    font-size: 15px;
+    font-size: 20px;
     color:#901C1C;
+    margin-left: 4px;
 }
 
 .likes-container {
     display: flex;
     align-items: center;
 }
+

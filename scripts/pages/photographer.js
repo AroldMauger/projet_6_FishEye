@@ -88,7 +88,6 @@ async function displayPhotographerMedias(id) {
 
         likesContainer.appendChild(likesPhotographer);
 
-
         titleContainer.appendChild(likesContainer);
         titleContainer.appendChild(titleMedia);
         likesContainer.appendChild(heartIcone);
