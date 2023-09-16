@@ -1,4 +1,4 @@
-import { clickOnFilterButton, sortByPopularity  } from "../utils/filters.js";
+import { clickOnFilterButton, sortByPopularity, sortByTitle  } from "../utils/filters.js";
 
 
 const urlParams = new URLSearchParams(window.location.search); // On récupère l'id de l'URL
@@ -7,6 +7,9 @@ const photographerHeader = document.querySelector(".photograph-header")
 const headerInfo = document.querySelector(".header-info")
 const mediasContainer = document.querySelector(".medias")
 const buttonSortByPopularity = document.querySelector("#sort-by-popularity");
+const buttonSortByTitle = document.querySelector("#sort-by-title");
+const buttonSortByDate = document.querySelector("#sort-by-date");
+
 const buttonFilters = document.querySelector(".btn_drop");
 
 // Fonction pour afficher les détails du photographe
@@ -111,3 +114,6 @@ buttonFilters.addEventListener("click", clickOnFilterButton)
 
 // Evenement au clic sur le bouton filtre "Popularité"
 buttonSortByPopularity.addEventListener("click", sortByPopularity)
+
+// Evenement au clic sur le bouton filtre "Titre"
+buttonSortByTitle.addEventListener("click", sortByTitle)

@@ -10,8 +10,6 @@ const mediasContainer = document.querySelector(".medias")
 
 //GESTION DE L'OUVERTURE ET CHANGEMENT DE NOM DES FILTRES
 
-
-
  export function clickOnFilterButton () {
     openFilters();
     changingCurrentFilter();
@@ -65,6 +63,59 @@ export function changingCurrentFilter () {
 
     for (let i = 0; i < mediasByPopularity.length; i++) {
         const media = mediasByPopularity[i];
+
+        if (media.photographerId === parseInt(photographerId)) {
+
+
+        const cardContainer = document.createElement("div");
+        cardContainer.classList.add("card-container");
+
+        const likesContainer = document.createElement("div");
+        likesContainer.classList.add("likes-container");
+        const titleContainer = document.createElement("div");
+        titleContainer.classList.add("title-container");
+
+        const mediaFromPhotographer = document.createElement("img");
+        mediaFromPhotographer.setAttribute("src", `assets/Photographers_ID_Photos/${media.image}`);
+        mediaFromPhotographer.classList.add("photo-from-photographer");
+
+        const titleMedia = document.createElement("p");
+        titleMedia.textContent = media.title;
+
+        const heartIcone = document.createElement("i");
+        heartIcone.className = "fa-solid fa-heart";
+
+        const likesPhotographer = document.createElement("span");
+        likesPhotographer.textContent = media.likes;
+
+        likesContainer.appendChild(likesPhotographer);
+        titleContainer.appendChild(likesContainer);
+        titleContainer.appendChild(titleMedia);
+        likesContainer.appendChild(heartIcone);
+        cardContainer.appendChild(titleContainer);
+        cardContainer.appendChild(mediaFromPhotographer);
+        mediasContainer.appendChild(cardContainer);
+    }
+  }
+}
+
+
+// TRIER LES MEDIAS EN FONCTION DE LEUR NOM
+
+export async function sortByTitle() {   
+    const response = await fetch('/data/photographers.json'); 
+    const photographersData = await response.json();
+    const medias = photographersData.media;
+    const mediasByTitle = Array.from(medias);
+
+    mediasByTitle.sort(function (a, b) { 
+        return a.title.localeCompare(b.title); //filtrer par ordre alphabétique
+    });
+
+    mediasContainer.innerHTML = "";
+
+    for (let i = 0; i < mediasByTitle.length; i++) {
+        const media = mediasByTitle[i];
 
         if (media.photographerId === parseInt(photographerId)) {
 
