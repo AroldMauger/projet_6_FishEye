@@ -110,6 +110,7 @@ displayPhotographerMedias(photographerId);
 
 const dropDownFilters = document.querySelector(".dropdown_content");
 const buttonFilters = document.querySelector(".btn_drop");
+const chevronUp = document.querySelector(".fa-chevron-up")
 
 buttonFilters.addEventListener("click", openFilters)
 
@@ -117,7 +118,11 @@ buttonFilters.addEventListener("click", openFilters)
 function openFilters() {
     if(dropDownFilters.style.display === "none") {
         dropDownFilters.style.display = "block";
+        chevronUp.classList.add("rotate");
+
     } else {
         dropDownFilters.style.display = "none";
+        chevronUp.classList.remove("rotate");
+
     }
 }

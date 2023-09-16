@@ -250,3 +250,7 @@ form input {
 .fa-chevron-up {
     margin-right: 10px;
 }
+
+.rotate{
+    transform: rotate(180deg);
+}
