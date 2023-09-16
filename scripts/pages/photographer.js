@@ -7,7 +7,9 @@ const mediasContainer = document.querySelector(".medias")
 
 const currentFilter = document.querySelector("#current_filter");
 const allFilters = Array.from(document.querySelectorAll(".dropdown_content li button"));
-
+const buttonSortByTitle = document.querySelector("#sort-by-title");
+const buttonSortByPopularity = document.querySelector("#sort-by-popularity");
+const buttonSortByDate = document.querySelector("#sort-by-date");
 
 // Fonction pour afficher les détails du photographe
 async function displayPhotographerInfo(id) {
@@ -153,9 +155,58 @@ function changingCurrentFilter () {
     
             })
         }); 
+
     }
 
-  
+// TRIER LES MEDIAS EN FONCTION DU NOMBRE DE LIKES
+
+buttonSortByPopularity.addEventListener("click", async function () {   
+    const response = await fetch('/data/photographers.json'); 
+    const photographersData = await response.json();
+    const medias = photographersData.media;
+    const mediasByPopularity = Array.from(medias);
+
+    mediasByPopularity.sort(function (a, b) {
+        return a.likes - b.likes;
+    });
+
+    mediasContainer.innerHTML = "";
+
+    for (let i = 0; i < mediasByPopularity.length; i++) {
+        const media = mediasByPopularity[i];
+
+        if (media.photographerId === parseInt(photographerId)) {
 
 
+        const cardContainer = document.createElement("div");
+        cardContainer.classList.add("card-container");
+
+        const likesContainer = document.createElement("div");
+        likesContainer.classList.add("likes-container");
+        const titleContainer = document.createElement("div");
+        titleContainer.classList.add("title-container");
+
+        const mediaFromPhotographer = document.createElement("img");
+        mediaFromPhotographer.setAttribute("src", `assets/Photographers_ID_Photos/${media.image}`);
+        mediaFromPhotographer.classList.add("photo-from-photographer");
+
+        const titleMedia = document.createElement("p");
+        titleMedia.textContent = media.title;
+
+        const heartIcone = document.createElement("i");
+        heartIcone.className = "fa-solid fa-heart";
+
+        const likesPhotographer = document.createElement("span");
+        likesPhotographer.textContent = media.likes;
+
+        likesContainer.appendChild(likesPhotographer);
+        titleContainer.appendChild(likesContainer);
+        titleContainer.appendChild(titleMedia);
+        likesContainer.appendChild(heartIcone);
+        cardContainer.appendChild(titleContainer);
+        cardContainer.appendChild(mediaFromPhotographer);
+        mediasContainer.appendChild(cardContainer);
+    }
+}
+});
 
