@@ -103,3 +103,21 @@ async function displayPhotographerMedias(id) {
 
 // On appelle la fonction pour afficher les détails du photographe avec l'ID récupéré de l'URL
 displayPhotographerMedias(photographerId);
+
+
+
+//GESTION DE L'OUVERTURE ET FERMETURE DES FILTRES
+
+const dropDownFilters = document.querySelector(".dropdown_content");
+const buttonFilters = document.querySelector(".btn_drop");
+
+buttonFilters.addEventListener("click", openFilters)
+
+
+function openFilters() {
+    if(dropDownFilters.style.display === "none") {
+        dropDownFilters.style.display = "block";
+    } else {
+        dropDownFilters.style.display = "none";
+    }
+}

@@ -169,3 +169,84 @@ form input {
     align-items: center;
 }
 
+.main_photographer_filter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap : 25px;
+}
+
+.dropdown_content {
+   display:none;
+   border-radius: 5px;
+   background: #901C1C;
+   padding:0px;
+}
+
+.main_photographer_filter {
+    margin-bottom: 58px;
+}
+
+.filters {
+    position: relative;
+}
+.dropdown {
+    z-index: 1;
+    position: absolute;
+    top : -15px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin:0px;
+    padding:0px;
+}
+
+.btn_drop {
+    border-radius: 5px;
+    background: #901C1C;
+    transition: max-height .1s ease-in-out;
+    color:white;
+    padding : 23px 10px 23px 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    font-size: 18px;
+    font-weight: 700;
+    width: 170px;
+}
+
+.option-filter{
+    transition: max-height .1s ease-in-out;
+    color:white;
+    padding : 0px;
+    display: flex;
+    gap: 18px;
+    font-size: 18px;
+    font-weight: 700;
+    margin:0px;
+    background: #901C1C;
+    margin-left: 10px;
+
+}
+
+.option-filter button{
+    color:white;
+    background: #901C1C;
+    border : none;
+    font-size: 18px;
+    font-weight: 700;
+    padding : 23px 10px 23px 10px;
+}
+
+.white-line {
+    border-bottom: white solid 1px;
+    width: 130px;
+}
+
+#current_filter {
+    margin-left: 7px;
+
+}
+
+.fa-chevron-up {
+    margin-right: 10px;
+}
