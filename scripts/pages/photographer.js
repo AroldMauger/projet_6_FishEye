@@ -1,4 +1,4 @@
-import { clickOnFilterButton, sortByPopularity, sortByTitle  } from "../utils/filters.js";
+import { clickOnFilterButton, sortByPopularity, sortByTitle, sortByDate  } from "../utils/filters.js";
 
 
 const urlParams = new URLSearchParams(window.location.search); // On récupère l'id de l'URL
@@ -117,3 +117,6 @@ buttonSortByPopularity.addEventListener("click", sortByPopularity)
 
 // Evenement au clic sur le bouton filtre "Titre"
 buttonSortByTitle.addEventListener("click", sortByTitle)
+
+// Evenement au clic sur le bouton filtre "Titre"
+buttonSortByDate.addEventListener("click", sortByDate)

@@ -152,3 +152,54 @@ export async function sortByTitle() {
   }
 }
 
+// TRIER LES MEDIAS EN FONCTION DE LEUR DATE
+
+export async function sortByDate() {   
+    const response = await fetch('/data/photographers.json'); 
+    const photographersData = await response.json();
+    const medias = photographersData.media;
+    const mediasByDate = Array.from(medias);
+
+    mediasByDate.sort(function (a, b) { 
+        return b.date - a.date
+    });
+
+    mediasContainer.innerHTML = "";
+
+    for (let i = 0; i < mediasByDate.length; i++) {
+        const media = mediasByDate[i];
+
+        if (media.photographerId === parseInt(photographerId)) {
+
+
+        const cardContainer = document.createElement("div");
+        cardContainer.classList.add("card-container");
+
+        const likesContainer = document.createElement("div");
+        likesContainer.classList.add("likes-container");
+        const titleContainer = document.createElement("div");
+        titleContainer.classList.add("title-container");
+
+        const mediaFromPhotographer = document.createElement("img");
+        mediaFromPhotographer.setAttribute("src", `assets/Photographers_ID_Photos/${media.image}`);
+        mediaFromPhotographer.classList.add("photo-from-photographer");
+
+        const titleMedia = document.createElement("p");
+        titleMedia.textContent = media.title;
+
+        const heartIcone = document.createElement("i");
+        heartIcone.className = "fa-solid fa-heart";
+
+        const likesPhotographer = document.createElement("span");
+        likesPhotographer.textContent = media.likes;
+
+        likesContainer.appendChild(likesPhotographer);
+        titleContainer.appendChild(likesContainer);
+        titleContainer.appendChild(titleMedia);
+        likesContainer.appendChild(heartIcone);
+        cardContainer.appendChild(titleContainer);
+        cardContainer.appendChild(mediaFromPhotographer);
+        mediasContainer.appendChild(cardContainer);
+    }
+  }
+}
