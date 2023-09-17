@@ -85,6 +85,8 @@ async function displayPhotographerMedias(id) {
 
         const cardContainer = document.createElement("a");
         cardContainer.classList.add("card-container");
+        cardContainer.setAttribute("id", media.id); 
+
 
         const likesContainer = document.createElement("div");
         likesContainer.classList.add("likes-container");
@@ -92,7 +94,7 @@ async function displayPhotographerMedias(id) {
         titleContainer.classList.add("title-container");
 
         const mediaFromPhotographer= document.createElement("img");
-        mediaFromPhotographer.setAttribute("src", `assets/Photographers_ID_Photos/${media.image}`); // Assurez-vous que le chemin est correct
+        mediaFromPhotographer.setAttribute("src", `assets/Photographers_ID_Photos/${media.image}`); 
         mediaFromPhotographer.classList.add("photo-from-photographer");
 
         const titleMedia = document.createElement("p");

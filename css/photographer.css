@@ -321,6 +321,11 @@ form input {
     margin:0px;
 }
 
+.lightbox_media_picture {
+    width: 80%;
+    height: 100%;
+}
+
 .button_close_container {
     display: flex;
     justify-content: end;
