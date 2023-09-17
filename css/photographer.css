@@ -170,6 +170,7 @@ form input {
     display: flex;
     flex-direction: column-reverse;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .title-container {
@@ -284,7 +285,6 @@ form input {
 /* LIGHTBOX */
 
 .lightbox_container {
-    display: flex;
     position: fixed;
     z-index: 1;
     left: 0;

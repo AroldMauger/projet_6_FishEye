@@ -67,7 +67,7 @@ export function changingCurrentFilter () {
         if (media.photographerId === parseInt(photographerId)) {
 
 
-        const cardContainer = document.createElement("div");
+        const cardContainer = document.createElement("a");
         cardContainer.classList.add("card-container");
 
         const likesContainer = document.createElement("div");
@@ -120,7 +120,7 @@ export async function sortByTitle() {
         if (media.photographerId === parseInt(photographerId)) {
 
 
-        const cardContainer = document.createElement("div");
+        const cardContainer = document.createElement("a");
         cardContainer.classList.add("card-container");
 
         const likesContainer = document.createElement("div");
@@ -172,7 +172,7 @@ export async function sortByDate() {
         if (media.photographerId === parseInt(photographerId)) {
 
 
-        const cardContainer = document.createElement("div");
+        const cardContainer = document.createElement("a");
         cardContainer.classList.add("card-container");
 
         const likesContainer = document.createElement("div");

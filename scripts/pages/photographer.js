@@ -81,7 +81,7 @@ async function displayPhotographerMedias(id) {
 
         if(photographer.id === media.photographerId) {
 
-        const cardContainer = document.createElement("div");
+        const cardContainer = document.createElement("a");
         cardContainer.classList.add("card-container");
 
         const likesContainer = document.createElement("div");
@@ -114,6 +114,12 @@ async function displayPhotographerMedias(id) {
 
         mediasContainer.appendChild(cardContainer);
       
+        const allCards = document.querySelectorAll(".card-container");
+
+        allCards.forEach(card => {
+            card.addEventListener('click', openLightbox)
+        }); 
+     
      }
     }
 }
