@@ -8,7 +8,7 @@
     top: 0;
     height: 100%;
     width: 100%;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .photograph-header {
@@ -33,16 +33,12 @@
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 35px;
-    margin: auto;
-
-
-    margin: 5% auto;
+    margin: 3% auto;
     width: 100%;
     max-width: 670px;
     padding-top: 10px;
