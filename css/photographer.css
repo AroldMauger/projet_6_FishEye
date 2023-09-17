@@ -339,3 +339,7 @@ form input {
     margin-top : 22px;
     margin-right: 25px;
 }
+
+.icon-close-lightbox {
+    cursor: pointer;
+}
