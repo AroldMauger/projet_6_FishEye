@@ -52,19 +52,26 @@
             </div>
         </section>   
     </main>
+    
+    <!-- FORMULAIRE MODAL-->
+
     <div id="contact_modal">
 			<div class="modal">
-				<header>
+				<header class="header-in-contactModal">
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-
-
-        <!-- FORMULAIRE MODAL-->
+        <div class="name-in-contactModal"></div>
 				<form>
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="first-name">Prénom</label>
+						<input id="first-name" type="text" required>
+            <label for="last-name">Nom</label>
+						<input id="last-name" type="text" required>
+            <label for="email">Email</label>
+						<input id="email" type="text" required>
+            <label for="message">Votre message</label>
+						<input id="message" type="text" required>
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>

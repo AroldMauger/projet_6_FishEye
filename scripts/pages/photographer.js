@@ -12,6 +12,9 @@ const buttonSortByDate = document.querySelector("#sort-by-date");
 
 const buttonFilters = document.querySelector(".btn_drop");
 
+const nameInModalContainer = document.querySelector(".name-in-contactModal");
+
+
 // Fonction pour afficher les détails du photographe
 async function displayPhotographerInfo(id) {
     const response = await fetch('/data/photographers.json'); 
@@ -46,6 +49,15 @@ async function displayPhotographerInfo(id) {
         headerInfo.appendChild(taglinePhotographer);
 
         photographerHeader.appendChild(photoPhotographer);
+
+        //Ajout du nom du photographe dans le formulaire de contact
+        const photographerNameInModal = document.createElement("span");
+        photographerNameInModal.textContent = photographer.name
+
+        nameInModalContainer.classList.add("nameInForm")
+
+        nameInModalContainer.appendChild(photographerNameInModal);
+
     
 }
 

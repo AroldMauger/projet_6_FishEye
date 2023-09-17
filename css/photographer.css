@@ -2,6 +2,13 @@
 
 #contact_modal {
     display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
 }
 
 .photograph-header {
@@ -33,6 +40,28 @@
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+
+
+    margin: 5% auto;
+    width: 100%;
+    max-width: 670px;
+    padding-top: 10px;
+}
+
+#message {
+    height: 170px;
+}
+
+.nameInForm {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    color: #000;
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+.header-in-contactModal  {
+    margin-bottom:-20px;
 }
 
 .modal header {
@@ -253,3 +282,6 @@ form input {
 .rotate{
     transform: rotate(180deg);
 }
+
+
+
