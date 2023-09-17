@@ -67,7 +67,6 @@ async function displayPhotographerInfo(id) {
 displayPhotographerInfo(photographerId);
 
 
-// Fonction pour afficher les détails du photographe
 async function displayPhotographerMedias(id) {
     const response = await fetch('/data/photographers.json'); 
     const photographersData = await response.json();
@@ -117,7 +116,6 @@ async function displayPhotographerMedias(id) {
         cardContainer.appendChild(mediaFromPhotographer);
 
         mediasContainer.appendChild(cardContainer);
-      
      }
     }
     openLightbox() // appel de la fonction pour ouvrir la Lightbox

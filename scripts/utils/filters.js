@@ -1,4 +1,5 @@
 //GESTION DES FILTRES
+import { openLightbox  } from "../utils/lightbox.js";
 const urlParams = new URLSearchParams(window.location.search); // On récupère l'id de l'URL
 const photographerId = urlParams.get('id');
 const currentFilter = document.querySelector("#current_filter");
@@ -105,6 +106,7 @@ export function changingCurrentFilter () {
      
     }
   }
+  
 }
 
 
