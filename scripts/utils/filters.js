@@ -95,6 +95,14 @@ export function changingCurrentFilter () {
         cardContainer.appendChild(titleContainer);
         cardContainer.appendChild(mediaFromPhotographer);
         mediasContainer.appendChild(cardContainer);
+
+        //OUVERTURE DE LA LIGHTBOX
+
+        const allCards = document.querySelectorAll(".card-container");
+        allCards.forEach(card => {
+            card.addEventListener('click', openLightbox)
+        }); 
+     
     }
   }
 }
@@ -148,6 +156,14 @@ export async function sortByTitle() {
         cardContainer.appendChild(titleContainer);
         cardContainer.appendChild(mediaFromPhotographer);
         mediasContainer.appendChild(cardContainer);
+
+        //OUVERTURE DE LA LIGHTBOX
+
+        const allCards = document.querySelectorAll(".card-container");
+        allCards.forEach(card => {
+            card.addEventListener('click', openLightbox)
+        }); 
+     
     }
   }
 }
@@ -200,6 +216,13 @@ export async function sortByDate() {
         cardContainer.appendChild(titleContainer);
         cardContainer.appendChild(mediaFromPhotographer);
         mediasContainer.appendChild(cardContainer);
+
+        //OUVERTURE DE LA LIGHTBOX
+        const allCards = document.querySelectorAll(".card-container");
+        allCards.forEach(card => {
+            card.addEventListener('click', openLightbox)
+        }); 
+     
     }
   }
 }

@@ -1,4 +1,6 @@
 import { clickOnFilterButton, sortByPopularity, sortByTitle, sortByDate  } from "../utils/filters.js";
+import { openLightbox  } from "../utils/lightbox.js";
+
 
 
 const urlParams = new URLSearchParams(window.location.search); // On récupère l'id de l'URL
@@ -114,14 +116,9 @@ async function displayPhotographerMedias(id) {
 
         mediasContainer.appendChild(cardContainer);
       
-        const allCards = document.querySelectorAll(".card-container");
-
-        allCards.forEach(card => {
-            card.addEventListener('click', openLightbox)
-        }); 
-     
      }
     }
+    openLightbox() // appel de la fonction pour ouvrir la Lightbox
 }
 
 // On appelle la fonction pour afficher les détails du photographe avec l'ID récupéré de l'URL
