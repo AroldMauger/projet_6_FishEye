@@ -324,22 +324,32 @@ form input {
 .button_close_container {
     display: flex;
     justify-content: end;
+    margin-top : 22px;
+    margin-right: 25px;
 }
 
 .button_lightbox {
-    width: 96px;
-    height: 96px;
+ 
     background-color: white;
     border: none;
+}
+
+
+.button_lightbox i {
+    width: 96px;
+    height: 96px;
+    font-size: 50px;
+    color: #901C1C;
 }
 
 .button_close_lightbox {
     background-color: white;
     border: none;
-    margin-top : 22px;
-    margin-right: 25px;
 }
 
 .icon-close-lightbox {
+    width: 42px;
+    height: 42px;
     cursor: pointer;
+    
 }
