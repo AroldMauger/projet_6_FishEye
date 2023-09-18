@@ -64,17 +64,17 @@
         </header>
         <div class="name-in-contactModal"></div>
 				<form>
-					<div>
+					<div class="fields-in-form">
 						<label for="first-name">Prénom</label>
 						<input id="first-name" type="text" required>
             <label for="last-name">Nom</label>
 						<input id="last-name" type="text" required>
             <label for="email">Email</label>
-						<input id="email" type="text" required>
+						<input id="email" type="text" pattern="[a-z0-9.-_]+@[a-z0-9.-_]+\.[a-z]{2,4}" required>
             <label for="message">Votre message</label>
 						<input id="message" type="text" required>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact_button" type="submit">Envoyer</button>
 				</form>
 			</div>
 		</div>

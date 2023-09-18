@@ -6,7 +6,6 @@
     z-index: 1;
     left: 0;
     top: 0;
-    height: 100%;
     width: 100%;
     overflow: hidden;
 }
@@ -21,8 +20,8 @@
     padding: 35px;
     margin: 3% auto;
     width: 100%;
-    max-width: 670px;
-    padding-top: 10px;
+    max-width: 600px;
+    padding-top: 5px;
 }
 
 .photograph-header {
@@ -47,7 +46,7 @@
 
 
 #message {
-    height: 170px;
+    height: 100px;
 }
 
 .nameInForm {
@@ -55,7 +54,7 @@
     border: none;
     border-radius: 5px;
     color: #000;
-    font-size: 64px;
+    font-size: 44px;
     margin-bottom: 20px;
 }
 .header-in-contactModal  {
@@ -72,7 +71,7 @@
 }
 
 .modal header h2 {
-    font-size: 64px;
+    font-size: 44px;
     font-weight: normal;
     text-align: center;
 }
@@ -82,24 +81,24 @@ form {
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
+
 }
 
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 28px;
 }
 
 form div {
     display: flex;
     flex-direction: column;
     width: 100%;
-    align-items: self-start;
     margin-bottom: 26px;
 }
 
 form input {
     width: 100%;
-    height: 68px;
+    height: 50px;
     border: none;
     border-radius: 5px;
 }
