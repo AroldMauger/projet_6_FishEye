@@ -1,5 +1,5 @@
 //GESTION DES FILTRES
-import { openLightbox  } from "../utils/lightbox.js";
+import { openLightbox, openLightboxPopularity } from "../utils/lightbox.js";
 const urlParams = new URLSearchParams(window.location.search); // On récupère l'id de l'URL
 const photographerId = urlParams.get('id');
 const currentFilter = document.querySelector("#current_filter");
@@ -67,9 +67,9 @@ export function changingCurrentFilter () {
 
         if (media.photographerId === parseInt(photographerId)) {
 
-
         const cardContainer = document.createElement("a");
         cardContainer.classList.add("card-container");
+        cardContainer.setAttribute("id", media.id); 
 
         const likesContainer = document.createElement("div");
         likesContainer.classList.add("likes-container");
@@ -97,16 +97,12 @@ export function changingCurrentFilter () {
         cardContainer.appendChild(mediaFromPhotographer);
         mediasContainer.appendChild(cardContainer);
 
-        //OUVERTURE DE LA LIGHTBOX
-
-        const allCards = document.querySelectorAll(".card-container");
-        allCards.forEach(card => {
-            card.addEventListener('click', openLightbox)
-        }); 
-     
     }
-  }
-  
+  }        
+
+
+  openLightboxPopularity()
+
 }
 
 
@@ -132,6 +128,7 @@ export async function sortByTitle() {
 
         const cardContainer = document.createElement("a");
         cardContainer.classList.add("card-container");
+        cardContainer.setAttribute("id", media.id); 
 
         const likesContainer = document.createElement("div");
         likesContainer.classList.add("likes-container");
@@ -159,15 +156,10 @@ export async function sortByTitle() {
         cardContainer.appendChild(mediaFromPhotographer);
         mediasContainer.appendChild(cardContainer);
 
-        //OUVERTURE DE LA LIGHTBOX
-
-        const allCards = document.querySelectorAll(".card-container");
-        allCards.forEach(card => {
-            card.addEventListener('click', openLightbox)
-        }); 
-     
     }
   }
+   //OUVERTURE DE LA LIGHTBOX
+   openLightbox()
 }
 
 // TRIER LES MEDIAS EN FONCTION DE LEUR DATE
@@ -192,6 +184,7 @@ export async function sortByDate() {
 
         const cardContainer = document.createElement("a");
         cardContainer.classList.add("card-container");
+        cardContainer.setAttribute("id", media.id); 
 
         const likesContainer = document.createElement("div");
         likesContainer.classList.add("likes-container");
@@ -219,12 +212,8 @@ export async function sortByDate() {
         cardContainer.appendChild(mediaFromPhotographer);
         mediasContainer.appendChild(cardContainer);
 
-        //OUVERTURE DE LA LIGHTBOX
-        const allCards = document.querySelectorAll(".card-container");
-        allCards.forEach(card => {
-            card.addEventListener('click', openLightbox)
-        }); 
-     
     }
   }
+   //OUVERTURE DE LA LIGHTBOX
+   openLightbox()
 }

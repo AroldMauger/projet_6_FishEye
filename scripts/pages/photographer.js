@@ -1,5 +1,6 @@
-import { clickOnFilterButton, sortByPopularity, sortByTitle, sortByDate  } from "../utils/filters.js";
 import { openLightbox  } from "../utils/lightbox.js";
+import { clickOnFilterButton, sortByPopularity, sortByTitle, sortByDate } from "../utils/filters.js";
+
 
 
 
@@ -118,7 +119,8 @@ async function displayPhotographerMedias(id) {
         mediasContainer.appendChild(cardContainer);
      }
     }
-    openLightbox() // appel de la fonction pour ouvrir la Lightbox
+    
+    openLightbox()  // appel de la fonction pour ouvrir la Lightbox
 }
 
 // On appelle la fonction pour afficher les détails du photographe avec l'ID récupéré de l'URL
