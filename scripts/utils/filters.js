@@ -1,5 +1,7 @@
 //GESTION DES FILTRES
-import { openLightbox, openLightboxPopularity, openLightboxDate, openLightboxName } from "../utils/lightbox.js";
+import { openLightboxPopularity, openLightboxDate, openLightboxName } from "../utils/lightbox.js";
+import { incrementLikes } from "../utils/likes.js";
+
 const urlParams = new URLSearchParams(window.location.search); // On récupère l'id de l'URL
 const photographerId = urlParams.get('id');
 const currentFilter = document.querySelector("#current_filter");
@@ -67,52 +69,58 @@ export function changingCurrentFilter () {
 
         if (media.photographerId === parseInt(photographerId)) {
 
-        const divCardContainer = document.createElement("div");
-        divCardContainer.classList.add("div-card-container");
-
-        const cardContainer = document.createElement("a");
-        cardContainer.classList.add("card-container");
-        cardContainer.setAttribute("id", media.id); 
-
-        const likesContainer = document.createElement("div");
-        likesContainer.classList.add("likes-container");
-        const titleContainer = document.createElement("div");
-        titleContainer.classList.add("title-container");
-
-        const mediaFromPhotographer = document.createElement("img");
-        mediaFromPhotographer.setAttribute("src", `assets/Photographers_ID_Photos/${media.image}`);
-        mediaFromPhotographer.classList.add("photo-from-photographer");
-
-        const titleMedia = document.createElement("p");
-        titleMedia.textContent = media.title;
-        const likesButton = document.createElement("button")
-        likesButton.setAttribute("id", media.id); 
-        likesButton.classList.add("likes-button");
-
-        const heartIcone = document.createElement("i");
-        heartIcone.className ="fa-solid fa-heart";
-
-        const likesPhotographer = document.createElement("span");
-        likesPhotographer.textContent = media.likes;
-
-
-        likesContainer.appendChild(likesPhotographer);
-
-        titleContainer.appendChild(likesContainer);
-        titleContainer.appendChild(titleMedia);
-        likesButton.appendChild(heartIcone)
-        likesContainer.appendChild(likesButton);
-
-        divCardContainer.appendChild(titleContainer);
-        cardContainer.appendChild(mediaFromPhotographer);
-
-        divCardContainer.appendChild(cardContainer);
-        mediasContainer.appendChild(divCardContainer);
+            const divCardContainer = document.createElement("div");
+            divCardContainer.classList.add("div-card-container");
+           
+            const cardContainer = document.createElement("a");
+            cardContainer.classList.add("card-container");
+            cardContainer.setAttribute("id", media.id); 
+    
+    
+            const likesContainer = document.createElement("div");
+            likesContainer.classList.add("likes-container");
+            const titleContainer = document.createElement("div");
+            titleContainer.classList.add("title-container");
+    
+            const mediaFromPhotographer= document.createElement("img");
+            mediaFromPhotographer.setAttribute("src", `assets/Photographers_ID_Photos/${media.image}`); 
+            mediaFromPhotographer.classList.add("photo-from-photographer");
+    
+            const titleMedia = document.createElement("p");
+            titleMedia.textContent = media.title;
+            
+            const likesButton = document.createElement("button")
+            likesButton.setAttribute("id", media.id); 
+            likesButton.classList.add("likes-button");
+            likesButton.setAttribute("liked", "false");    // cette ligne va permettre de gérer la resctriction de l'incrémentation des likes
+    
+            const heartIcone = document.createElement("i");
+            heartIcone.className ="fa-solid fa-heart";
+    
+            const likesPhotographer = document.createElement("span");
+            likesPhotographer.textContent = media.likes;
+            likesPhotographer.classList.add("number-of-likes");
+            likesPhotographer.setAttribute("id", media.id); 
+    
+    
+            likesContainer.appendChild(likesPhotographer);
+    
+            titleContainer.appendChild(likesContainer);
+            titleContainer.appendChild(titleMedia);
+            likesButton.appendChild(heartIcone)
+            likesContainer.appendChild(likesButton);
+    
+            divCardContainer.appendChild(titleContainer);
+            cardContainer.appendChild(mediaFromPhotographer);
+    
+            divCardContainer.appendChild(cardContainer);
+            mediasContainer.appendChild(divCardContainer);
+            
 
     }
   }        
   openLightboxPopularity()
-
+  incrementLikes()
 }
 
 
@@ -135,36 +143,38 @@ export async function sortByTitle() {
 
         if (media.photographerId === parseInt(photographerId)) {
 
-
-       
             const divCardContainer = document.createElement("div");
             divCardContainer.classList.add("div-card-container");
-    
+           
             const cardContainer = document.createElement("a");
             cardContainer.classList.add("card-container");
             cardContainer.setAttribute("id", media.id); 
+    
     
             const likesContainer = document.createElement("div");
             likesContainer.classList.add("likes-container");
             const titleContainer = document.createElement("div");
             titleContainer.classList.add("title-container");
     
-            const mediaFromPhotographer = document.createElement("img");
-            mediaFromPhotographer.setAttribute("src", `assets/Photographers_ID_Photos/${media.image}`);
+            const mediaFromPhotographer= document.createElement("img");
+            mediaFromPhotographer.setAttribute("src", `assets/Photographers_ID_Photos/${media.image}`); 
             mediaFromPhotographer.classList.add("photo-from-photographer");
     
             const titleMedia = document.createElement("p");
             titleMedia.textContent = media.title;
-    
+            
             const likesButton = document.createElement("button")
             likesButton.setAttribute("id", media.id); 
             likesButton.classList.add("likes-button");
+            likesButton.setAttribute("liked", "false");    // cette ligne va permettre de gérer la resctriction de l'incrémentation des likes
     
             const heartIcone = document.createElement("i");
             heartIcone.className ="fa-solid fa-heart";
     
             const likesPhotographer = document.createElement("span");
             likesPhotographer.textContent = media.likes;
+            likesPhotographer.classList.add("number-of-likes");
+            likesPhotographer.setAttribute("id", media.id); 
     
     
             likesContainer.appendChild(likesPhotographer);
@@ -179,8 +189,11 @@ export async function sortByTitle() {
     
             divCardContainer.appendChild(cardContainer);
             mediasContainer.appendChild(divCardContainer);
+            
     }
   }
+  incrementLikes()
+
    //OUVERTURE DE LA LIGHTBOX
    openLightboxName()
 }
@@ -204,35 +217,38 @@ export async function sortByDate() {
 
         if (media.photographerId === parseInt(photographerId)) {
 
-
-       
             const divCardContainer = document.createElement("div");
             divCardContainer.classList.add("div-card-container");
-    
+           
             const cardContainer = document.createElement("a");
             cardContainer.classList.add("card-container");
             cardContainer.setAttribute("id", media.id); 
+    
     
             const likesContainer = document.createElement("div");
             likesContainer.classList.add("likes-container");
             const titleContainer = document.createElement("div");
             titleContainer.classList.add("title-container");
     
-            const mediaFromPhotographer = document.createElement("img");
-            mediaFromPhotographer.setAttribute("src", `assets/Photographers_ID_Photos/${media.image}`);
+            const mediaFromPhotographer= document.createElement("img");
+            mediaFromPhotographer.setAttribute("src", `assets/Photographers_ID_Photos/${media.image}`); 
             mediaFromPhotographer.classList.add("photo-from-photographer");
     
             const titleMedia = document.createElement("p");
             titleMedia.textContent = media.title;
+            
             const likesButton = document.createElement("button")
             likesButton.setAttribute("id", media.id); 
             likesButton.classList.add("likes-button");
+            likesButton.setAttribute("liked", "false");    // cette ligne va permettre de gérer la resctriction de l'incrémentation des likes
     
             const heartIcone = document.createElement("i");
             heartIcone.className ="fa-solid fa-heart";
     
             const likesPhotographer = document.createElement("span");
             likesPhotographer.textContent = media.likes;
+            likesPhotographer.classList.add("number-of-likes");
+            likesPhotographer.setAttribute("id", media.id); 
     
     
             likesContainer.appendChild(likesPhotographer);
@@ -247,9 +263,11 @@ export async function sortByDate() {
     
             divCardContainer.appendChild(cardContainer);
             mediasContainer.appendChild(divCardContainer);
+            
 
     }
   }
-   //OUVERTURE DE LA LIGHTBOX
-   openLightboxDate()
+  incrementLikes()
+  
+  openLightboxDate()
 }
