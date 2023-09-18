@@ -1,5 +1,5 @@
 //GESTION DES FILTRES
-import { openLightbox, openLightboxPopularity, openLightboxDate } from "../utils/lightbox.js";
+import { openLightbox, openLightboxPopularity, openLightboxDate, openLightboxName } from "../utils/lightbox.js";
 const urlParams = new URLSearchParams(window.location.search); // On récupère l'id de l'URL
 const photographerId = urlParams.get('id');
 const currentFilter = document.querySelector("#current_filter");
@@ -157,7 +157,7 @@ export async function sortByTitle() {
     }
   }
    //OUVERTURE DE LA LIGHTBOX
-   openLightbox()
+   openLightboxName()
 }
 
 // TRIER LES MEDIAS EN FONCTION DE LEUR DATE

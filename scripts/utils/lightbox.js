@@ -115,12 +115,7 @@ function displayCurrentMediaPopularity() {
     picture.classList.add("lightbox_media_picture");
 
     lightboxMedia.appendChild(picture);
-
 }
-
-
-
-
 
 // LIGHTBOX DATE
 // OUVERTURE DE LA LIGHTBOX
@@ -142,11 +137,7 @@ export function openLightboxDate() {
             displayCurrentMediaByDate();
         });
     });
-
-
 }
-
-
 
 // AFFICHER L'IMAGE ACTUELLE
 function displayCurrentMediaByDate() {
@@ -165,6 +156,48 @@ function displayCurrentMediaByDate() {
 
     lightboxMedia.appendChild(picture);
 
-    console.log(filteredMediasByDate)
+}
+
+
+// LIGHTBOX NOM
+// OUVERTURE DE LA LIGHTBOX
+export function openLightboxName() {
+
+
+    const filteredMediasByTitle = filteredMedias.sort(function (a, b) { 
+        return a.title.localeCompare(b.title); //filtrer par ordre alphabétique
+    });
+
+
+    const mediaProvider = Array.from(document.querySelectorAll('.card-container'));
+
+    mediaProvider.forEach(mediaCard => {
+        mediaCard.addEventListener('click', function() {
+            lightBoxContainer.style.display = "flex";
+           
+            const mediaId = mediaCard.id;
+            currentIndex = filteredMediasByTitle.findIndex(media => media.id == mediaId);
+            displayCurrentMediaByTitle();
+        });
+    });
+}
+
+// AFFICHER L'IMAGE ACTUELLE
+function displayCurrentMediaByTitle() {
+    
+    const filteredMediasByTitle = filteredMedias.sort(function (a, b) { 
+        return a.title.localeCompare(b.title); //filtrer par ordre alphabétique
+    });
+    const currentMedia = filteredMediasByTitle[currentIndex];  // currentMedia est l'objet du JSON qui est affiché
+
+    const lightboxMedia = document.querySelector(".lightbox_media");
+    lightboxMedia.innerHTML = "";
+
+    const picture = document.createElement("img");
+    picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
+    picture.classList.add("lightbox_media_picture");
+
+    lightboxMedia.appendChild(picture);
+
 }
 
