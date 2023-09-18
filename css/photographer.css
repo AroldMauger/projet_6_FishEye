@@ -289,42 +289,35 @@ form input {
     z-index: 1;
     left: 0;
     top: 0;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
+    right: 0;
     display: flex;
     justify-content: center;
-
+    margin: 40px 80px 0px 80px;
+    width: 100%;
+    height: 100%;
 }
 
 .lightbox {
+    position: absolute;
     display: flex;
     justify-content: center;
-    align-items: center;
     border-radius: 5px;
     background-color: white;
     border: 2px solid #95FFF9;
-    margin: 40px 80px 0px 100px;
-    height: 100%;
-    width: 70%;
+    padding-block:40px ;
+    width: 100%;
+    max-width: 1000px;
+    height: 90%;
+    max-height: 1000px;
 }
 
-
-.lightbox_media_container {
-    display: flex;
-    flex-direction: row;
-    padding:40px 86px 20px 100px;
-  
-}
-
-.lightbox_media {
+.lightbox_media {         /* LA BALISE FIGURE PARENT DE IMG */
     display: flex;
     flex-direction: column;
     justify-content: start;
     margin:0px;
-    object-fit: cover;
-    width:950px;
-    height: 800px;
+    width: 100%;
+    height: 100%;
 }
 
 .lightbox_media p {
@@ -332,29 +325,17 @@ form input {
    font-size: 24px;
 }
 
-.lightbox_media_picture {
-    height: 95%;
+.lightbox_media_picture {  /* LA BALISE IMG */
     width: 100%;
+    height: calc(100% - 80px);
+    object-position:center;
     object-fit: cover;
 }
 
-.button_close_container {
-    position: absolute;
-    z-index: 1;
-    display: flex;
-    justify-content: end;
-    top: 120px; 
-    right: 450px; 
-    width:50px;
-    height: 50px;
-}
-
 .button_lightbox {
- 
     background-color: white;
     border: none;
 }
-
 
 .button_lightbox i {
     width: 96px;
@@ -364,8 +345,12 @@ form input {
 }
 
 .button_close_lightbox {
+    position: relative;
+    display: flex;
+    justify-content: end;
     background-color: white;
     border: none;
+    height: 50px;
 }
 
 .icon-close-lightbox {
