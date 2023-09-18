@@ -1,5 +1,5 @@
 //GESTION DES FILTRES
-import { openLightbox, openLightboxPopularity } from "../utils/lightbox.js";
+import { openLightbox, openLightboxPopularity, openLightboxDate } from "../utils/lightbox.js";
 const urlParams = new URLSearchParams(window.location.search); // On récupère l'id de l'URL
 const photographerId = urlParams.get('id');
 const currentFilter = document.querySelector("#current_filter");
@@ -99,8 +99,6 @@ export function changingCurrentFilter () {
 
     }
   }        
-
-
   openLightboxPopularity()
 
 }
@@ -171,7 +169,7 @@ export async function sortByDate() {
     const mediasByDate = Array.from(medias);
 
     mediasByDate.sort(function (a, b) { 
-        return b.date - a.date
+        return new Date(b.date) - new Date(a.date)
     });
 
     mediasContainer.innerHTML = "";
@@ -215,5 +213,5 @@ export async function sortByDate() {
     }
   }
    //OUVERTURE DE LA LIGHTBOX
-   openLightbox()
+   openLightboxDate()
 }

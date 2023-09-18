@@ -76,7 +76,8 @@ async function displayPhotographerMedias(id) {
 
     const photographer = photographers.find(photographer => photographer.id === parseInt(id));
 
-
+    //AFFICHAGE PAR DEFAUT DES DATES ?? sortByDate()   
+    
     // On affiche les informations du photographe
     for (let i = 0; i < medias.length; i++) {
         const media = medias[i];
