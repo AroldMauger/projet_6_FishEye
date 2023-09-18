@@ -67,6 +67,9 @@ export function changingCurrentFilter () {
 
         if (media.photographerId === parseInt(photographerId)) {
 
+        const divCardContainer = document.createElement("div");
+        divCardContainer.classList.add("div-card-container");
+
         const cardContainer = document.createElement("a");
         cardContainer.classList.add("card-container");
         cardContainer.setAttribute("id", media.id); 
@@ -82,20 +85,29 @@ export function changingCurrentFilter () {
 
         const titleMedia = document.createElement("p");
         titleMedia.textContent = media.title;
+        const likesButton = document.createElement("button")
+        likesButton.setAttribute("id", media.id); 
+        likesButton.classList.add("likes-button");
 
         const heartIcone = document.createElement("i");
-        heartIcone.className = "fa-solid fa-heart";
+        heartIcone.className ="fa-solid fa-heart";
 
         const likesPhotographer = document.createElement("span");
         likesPhotographer.textContent = media.likes;
 
+
         likesContainer.appendChild(likesPhotographer);
+
         titleContainer.appendChild(likesContainer);
         titleContainer.appendChild(titleMedia);
-        likesContainer.appendChild(heartIcone);
-        cardContainer.appendChild(titleContainer);
+        likesButton.appendChild(heartIcone)
+        likesContainer.appendChild(likesButton);
+
+        divCardContainer.appendChild(titleContainer);
         cardContainer.appendChild(mediaFromPhotographer);
-        mediasContainer.appendChild(cardContainer);
+
+        divCardContainer.appendChild(cardContainer);
+        mediasContainer.appendChild(divCardContainer);
 
     }
   }        
@@ -124,36 +136,49 @@ export async function sortByTitle() {
         if (media.photographerId === parseInt(photographerId)) {
 
 
-        const cardContainer = document.createElement("a");
-        cardContainer.classList.add("card-container");
-        cardContainer.setAttribute("id", media.id); 
-
-        const likesContainer = document.createElement("div");
-        likesContainer.classList.add("likes-container");
-        const titleContainer = document.createElement("div");
-        titleContainer.classList.add("title-container");
-
-        const mediaFromPhotographer = document.createElement("img");
-        mediaFromPhotographer.setAttribute("src", `assets/Photographers_ID_Photos/${media.image}`);
-        mediaFromPhotographer.classList.add("photo-from-photographer");
-
-        const titleMedia = document.createElement("p");
-        titleMedia.textContent = media.title;
-
-        const heartIcone = document.createElement("i");
-        heartIcone.className = "fa-solid fa-heart";
-
-        const likesPhotographer = document.createElement("span");
-        likesPhotographer.textContent = media.likes;
-
-        likesContainer.appendChild(likesPhotographer);
-        titleContainer.appendChild(likesContainer);
-        titleContainer.appendChild(titleMedia);
-        likesContainer.appendChild(heartIcone);
-        cardContainer.appendChild(titleContainer);
-        cardContainer.appendChild(mediaFromPhotographer);
-        mediasContainer.appendChild(cardContainer);
-
+       
+            const divCardContainer = document.createElement("div");
+            divCardContainer.classList.add("div-card-container");
+    
+            const cardContainer = document.createElement("a");
+            cardContainer.classList.add("card-container");
+            cardContainer.setAttribute("id", media.id); 
+    
+            const likesContainer = document.createElement("div");
+            likesContainer.classList.add("likes-container");
+            const titleContainer = document.createElement("div");
+            titleContainer.classList.add("title-container");
+    
+            const mediaFromPhotographer = document.createElement("img");
+            mediaFromPhotographer.setAttribute("src", `assets/Photographers_ID_Photos/${media.image}`);
+            mediaFromPhotographer.classList.add("photo-from-photographer");
+    
+            const titleMedia = document.createElement("p");
+            titleMedia.textContent = media.title;
+    
+            const likesButton = document.createElement("button")
+            likesButton.setAttribute("id", media.id); 
+            likesButton.classList.add("likes-button");
+    
+            const heartIcone = document.createElement("i");
+            heartIcone.className ="fa-solid fa-heart";
+    
+            const likesPhotographer = document.createElement("span");
+            likesPhotographer.textContent = media.likes;
+    
+    
+            likesContainer.appendChild(likesPhotographer);
+    
+            titleContainer.appendChild(likesContainer);
+            titleContainer.appendChild(titleMedia);
+            likesButton.appendChild(heartIcone)
+            likesContainer.appendChild(likesButton);
+    
+            divCardContainer.appendChild(titleContainer);
+            cardContainer.appendChild(mediaFromPhotographer);
+    
+            divCardContainer.appendChild(cardContainer);
+            mediasContainer.appendChild(divCardContainer);
     }
   }
    //OUVERTURE DE LA LIGHTBOX
@@ -180,35 +205,48 @@ export async function sortByDate() {
         if (media.photographerId === parseInt(photographerId)) {
 
 
-        const cardContainer = document.createElement("a");
-        cardContainer.classList.add("card-container");
-        cardContainer.setAttribute("id", media.id); 
-
-        const likesContainer = document.createElement("div");
-        likesContainer.classList.add("likes-container");
-        const titleContainer = document.createElement("div");
-        titleContainer.classList.add("title-container");
-
-        const mediaFromPhotographer = document.createElement("img");
-        mediaFromPhotographer.setAttribute("src", `assets/Photographers_ID_Photos/${media.image}`);
-        mediaFromPhotographer.classList.add("photo-from-photographer");
-
-        const titleMedia = document.createElement("p");
-        titleMedia.textContent = media.title;
-
-        const heartIcone = document.createElement("i");
-        heartIcone.className = "fa-solid fa-heart";
-
-        const likesPhotographer = document.createElement("span");
-        likesPhotographer.textContent = media.likes;
-
-        likesContainer.appendChild(likesPhotographer);
-        titleContainer.appendChild(likesContainer);
-        titleContainer.appendChild(titleMedia);
-        likesContainer.appendChild(heartIcone);
-        cardContainer.appendChild(titleContainer);
-        cardContainer.appendChild(mediaFromPhotographer);
-        mediasContainer.appendChild(cardContainer);
+       
+            const divCardContainer = document.createElement("div");
+            divCardContainer.classList.add("div-card-container");
+    
+            const cardContainer = document.createElement("a");
+            cardContainer.classList.add("card-container");
+            cardContainer.setAttribute("id", media.id); 
+    
+            const likesContainer = document.createElement("div");
+            likesContainer.classList.add("likes-container");
+            const titleContainer = document.createElement("div");
+            titleContainer.classList.add("title-container");
+    
+            const mediaFromPhotographer = document.createElement("img");
+            mediaFromPhotographer.setAttribute("src", `assets/Photographers_ID_Photos/${media.image}`);
+            mediaFromPhotographer.classList.add("photo-from-photographer");
+    
+            const titleMedia = document.createElement("p");
+            titleMedia.textContent = media.title;
+            const likesButton = document.createElement("button")
+            likesButton.setAttribute("id", media.id); 
+            likesButton.classList.add("likes-button");
+    
+            const heartIcone = document.createElement("i");
+            heartIcone.className ="fa-solid fa-heart";
+    
+            const likesPhotographer = document.createElement("span");
+            likesPhotographer.textContent = media.likes;
+    
+    
+            likesContainer.appendChild(likesPhotographer);
+    
+            titleContainer.appendChild(likesContainer);
+            titleContainer.appendChild(titleMedia);
+            likesButton.appendChild(heartIcone)
+            likesContainer.appendChild(likesButton);
+    
+            divCardContainer.appendChild(titleContainer);
+            cardContainer.appendChild(mediaFromPhotographer);
+    
+            divCardContainer.appendChild(cardContainer);
+            mediasContainer.appendChild(divCardContainer);
 
     }
   }

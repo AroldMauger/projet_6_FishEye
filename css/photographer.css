@@ -163,11 +163,14 @@ form input {
   height: 300px; 
 }
 
-.card-container {
-    width: 350px;
-    height: 350px; 
+.div-card-container {
     display: flex;
     flex-direction: column-reverse;
+    width: 350px;
+    height: 350px; 
+}
+
+.card-container {
     overflow: hidden;
     cursor: pointer;
 }
@@ -187,7 +190,7 @@ form input {
 
 .fa-heart {
     font-size: 20px;
-    color:#901C1C;
+    color:#ce5a5a;
     margin-left: 4px;
 }
 
@@ -357,4 +360,9 @@ form input {
     height: 42px;
     cursor: pointer;
     
+}
+
+.likes-button {
+    background-color: white;
+    border: none;
 }
