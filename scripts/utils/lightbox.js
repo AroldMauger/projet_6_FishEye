@@ -46,7 +46,11 @@ function displayCurrentMedia() {
     picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
     picture.classList.add("lightbox_media_picture");
 
+    const titleMediaInLightbox = document.createElement("p");
+    titleMediaInLightbox.textContent = currentMedia.title;
+
     lightboxMedia.appendChild(picture);
+    lightboxMedia.appendChild(titleMediaInLightbox);
 
 }
 
@@ -114,7 +118,11 @@ function displayCurrentMediaPopularity() {
     picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
     picture.classList.add("lightbox_media_picture");
 
+    const titleMediaInLightbox = document.createElement("p");
+    titleMediaInLightbox.textContent = currentMedia.title;
+
     lightboxMedia.appendChild(picture);
+    lightboxMedia.appendChild(titleMediaInLightbox);
 }
 
 // LIGHTBOX DATE
@@ -154,7 +162,11 @@ function displayCurrentMediaByDate() {
     picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
     picture.classList.add("lightbox_media_picture");
 
+    const titleMediaInLightbox = document.createElement("p");
+    titleMediaInLightbox.textContent = currentMedia.title;
+
     lightboxMedia.appendChild(picture);
+    lightboxMedia.appendChild(titleMediaInLightbox);
 
 }
 
@@ -197,7 +209,11 @@ function displayCurrentMediaByTitle() {
     picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
     picture.classList.add("lightbox_media_picture");
 
+    const titleMediaInLightbox = document.createElement("p");
+    titleMediaInLightbox.textContent = currentMedia.title;
+
     lightboxMedia.appendChild(picture);
+    lightboxMedia.appendChild(titleMediaInLightbox);
 
 }
 
