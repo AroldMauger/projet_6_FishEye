@@ -366,3 +366,24 @@ form input {
     background-color: white;
     border: none;
 }
+
+
+/* MODAL FIXE POUR LES LIKES */
+
+.total-likes-and-price {
+    position: fixed;
+    z-index: 2;
+    width: 375px;
+    height: 90px;
+    background: #DB8876;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    left : 1000px;
+    top: 857px;
+    color:black;
+}
+.total-likes-and-price i{
+    color:black;
+}

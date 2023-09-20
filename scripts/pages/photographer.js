@@ -13,19 +13,17 @@ const mediasContainer = document.querySelector(".medias")
 const buttonSortByPopularity = document.querySelector("#sort-by-popularity");
 const buttonSortByTitle = document.querySelector("#sort-by-title");
 const buttonSortByDate = document.querySelector("#sort-by-date");
-
 const buttonFilters = document.querySelector(".btn_drop");
-
 const nameInModalContainer = document.querySelector(".name-in-contactModal");
-
 
 // Fonction pour afficher les détails du photographe
 async function displayPhotographerInfo(id) {
+  
     const response = await fetch('/data/photographers.json'); 
     const photographersData = await response.json();
     const photographers = photographersData.photographers;
-
     const photographer = photographers.find(photographer => photographer.id === parseInt(id));
+    const medias = photographersData.media;
 
         // On affiche les informations du photographe
         const namePhotographer = document.createElement("p");
@@ -62,8 +60,34 @@ async function displayPhotographerInfo(id) {
 
         nameInModalContainer.appendChild(photographerNameInModal);
 
-    
-}
+        
+        // FAIRE APPARAITRE LE NOMBRE TOTAL DE LIKES ET LE PRIX PAR JOUR
+        const totalLikesAndPrice = document.querySelector("aside");
+        const totalLikesContainer = document.createElement("p");
+
+        const filteredMedias = medias.filter(media => media.photographerId === parseInt(photographerId)); 
+
+        let totalLikes = 0;
+        filteredMedias.forEach(media => {
+        totalLikes += media.likes;
+        });
+
+        const numberOfTotalLikes = document.createElement("span");
+        numberOfTotalLikes.textContent = totalLikes.toString()
+
+        const heartInAside = document.createElement("i");
+        heartInAside.className ="fa-solid fa-heart";
+
+        const price = document.createElement("span");
+        price.textContent = photographer.price + "/ jour";
+
+        totalLikesContainer.appendChild(numberOfTotalLikes);
+        totalLikesContainer.appendChild(heartInAside);
+
+        totalLikesAndPrice.appendChild(totalLikesContainer);
+        totalLikesAndPrice.appendChild(price);
+        console.log(filteredMedias)
+    }
 
 // On appelle la fonction pour afficher les détails du photographe avec l'ID récupéré de l'URL
 displayPhotographerInfo(photographerId);
@@ -128,11 +152,15 @@ async function displayPhotographerMedias(id) {
 
         divCardContainer.appendChild(cardContainer);
         mediasContainer.appendChild(divCardContainer);
-        
+
      }
+     
     }
+
     incrementLikes()
     openLightbox()  // appel de la fonction pour ouvrir la Lightbox
+
+ 
 }
 
 // On appelle la fonction pour afficher les détails du photographe avec l'ID récupéré de l'URL

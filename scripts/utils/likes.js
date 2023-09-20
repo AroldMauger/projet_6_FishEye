@@ -28,10 +28,12 @@ export async function incrementLikes () {
 
             const heartIcone = likesButton.querySelector(".fa-heart");
                 heartIcone.style.color = "#901C1C";
-    
         });
     }});
     
     })
 
 }
+
+
+        
