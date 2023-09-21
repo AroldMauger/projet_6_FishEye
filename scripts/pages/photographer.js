@@ -1,5 +1,5 @@
 import { openLightbox, openLightboxPopularity, openLightboxName, openLightboxDate  } from "../utils/lightbox.js";
-import { incrementLikes } from "../utils/likes.js";
+import { incrementLikes  } from "../utils/likes.js";
 
 
 const urlParams = new URLSearchParams(window.location.search); // On récupère l'id de l'URL
@@ -12,7 +12,6 @@ const buttonSortByTitle = document.querySelector("#sort-by-title");
 const buttonSortByDate = document.querySelector("#sort-by-date");
 const buttonFilters = document.querySelector(".btn_drop");
 const nameInModalContainer = document.querySelector(".name-in-contactModal");
-const totalLikesAndPrice = document.querySelector("aside");
 const dropDownFilters = document.querySelector(".dropdown_content");
 const chevronUp = document.querySelector(".fa-chevron-up")
 const allFilters = Array.from(document.querySelectorAll(".dropdown_content li button"));
@@ -26,7 +25,6 @@ export async function fetchData() {
 async function displayPhotographerInfo(id, photographersData) {
 
     const photographer = photographersData.photographers.find(photographer => photographer.id === parseInt(id));
-    const medias = photographersData.media;
 
 // Cette fonction va nous permettre d'économiser des lignes de code pour générer les éléments textuels du DOM
     function createTextualElements(tag, textContent, className) {  // Chaque élément textuel aura un tag (balise), un contenu "textContent", et une class facultative
@@ -57,32 +55,13 @@ async function displayPhotographerInfo(id, photographersData) {
         nameInModalContainer.appendChild(photographerNameInModal);
 
         
-        // FAIRE APPARAITRE LE NOMBRE TOTAL DE LIKES ET LE PRIX PAR JOUR
-        let totalLikes = 0;
-        const filteredMedias = medias.filter(media => media.photographerId === parseInt(photographerId)); 
-
-        filteredMedias.forEach(media => {totalLikes += media.likes;});
-
-        const numberOfTotalLikes = createTextualElements("span", totalLikes.toString());
-        const heartInAside = document.createElement("i");
-        heartInAside.className ="fa-solid fa-heart";
-        const price = createTextualElements("span", `${photographer.price} / jour`);
-
-        totalLikesAndPrice.innerHTML = "";
-        totalLikesAndPrice.appendChild(numberOfTotalLikes);
-        totalLikesAndPrice.appendChild(heartInAside);
-        totalLikesAndPrice.appendChild(price);
-        console.log(filteredMedias)
     }
 
 
 // FONCTION QUI GENERE LES MEDIAS AU CHARGEMENT DE LA PAGE EN FONCTION DE L'ID DU PHOTOGRAPHE
 export async function displayPhotographerMedias(id, photographersData) {
     const medias = photographersData.media;
-    const filteredMedias = medias.filter(media => media.photographerId === parseInt(photographerId));
 
-   
-     
      const mediasByPopularity = [...medias].sort((a, b) => a.likes - b.likes);
      mediasContainer.innerHTML = "";
      mediasByPopularity.forEach(media => {
@@ -91,14 +70,15 @@ export async function displayPhotographerMedias(id, photographersData) {
        }
      });
    
-     openLightbox();
-     incrementLikes()
+     openLightboxPopularity();
+ 
 }
 
 // Appels aux fonctions
 fetchData().then(photographersData => {
     displayPhotographerInfo(photographerId, photographersData);
     displayPhotographerMedias(photographerId, photographersData);
+    incrementLikes(photographerId, photographersData);
   });
 
 
@@ -117,79 +97,7 @@ function clickOnFilterButton () {
     changingCurrentFilter();
 }
 
-// GESTION DES FILTRES
-function openFilters() {
-    if(dropDownFilters.style.display === "none") {
-        dropDownFilters.style.display = "block";
-        chevronUp.classList.add("rotate");
 
-    } else {
-        dropDownFilters.style.display = "none";
-        chevronUp.classList.remove("rotate");
-
-    }
-}
-
-
-function changingCurrentFilter() {
-    let selectedFilter = allFilters.find(filter => filter.textContent === currentFilter.textContent);
-    selectedFilter.style.display = 'none';
-  
-    allFilters.forEach(filter => {
-      filter.addEventListener('click', function () {
-        currentFilter.textContent = filter.textContent;
-        if (selectedFilter) selectedFilter.style.display = 'block';
-        selectedFilter = filter;
-        selectedFilter.style.display = 'none';
-      });
-    });
-  }
-
-
-  async function sortByPopularity() {
-    const photographersData = await fetchData();
-    const medias = photographersData.media;
-    const mediasByPopularity = [...medias].sort((a, b) => a.likes - b.likes);
-  
-    mediasContainer.innerHTML = "";
-    mediasByPopularity.forEach(media => {
-      if (media.photographerId === parseInt(photographerId)) {
-        createCardElement(media);
-      }
-    });
-  
-    openLightboxPopularity();
-  }
-  
-  async function sortByTitle() {
-    const photographersData = await fetchData();
-    const medias = photographersData.media;
-    const mediasByTitle = [...medias].sort((a, b) => a.title.localeCompare(b.title));
-  
-    mediasContainer.innerHTML = "";
-    mediasByTitle.forEach(media => {
-      if (media.photographerId === parseInt(photographerId)) {
-        createCardElement(media);
-      }
-    });
-  
-    openLightboxName();
-  }
-  
-  async function sortByDate() {
-    const photographersData = await fetchData();
-    const medias = photographersData.media;
-    const mediasByDate = [...medias].sort((a, b) => new Date(b.date) - new Date(a.date));
-  
-    mediasContainer.innerHTML = "";
-    mediasByDate.forEach(media => {
-      if (media.photographerId === parseInt(photographerId)) {
-        createCardElement(media);
-      }
-    });
-  
-    openLightboxDate();
-  }
 
   function createCardElement(media) {
         
@@ -237,3 +145,75 @@ function changingCurrentFilter() {
     mediasContainer.appendChild(divCardContainer);
 
  }
+
+
+ // GESTION DES FILTRES
+function openFilters() {
+    if(dropDownFilters.style.display === "none") {
+        dropDownFilters.style.display = "block";
+        chevronUp.classList.add("rotate");
+
+    } else {
+        dropDownFilters.style.display = "none";
+        chevronUp.classList.remove("rotate");
+
+    }
+}
+
+
+function changingCurrentFilter() {
+    let selectedFilter = allFilters.find(filter => filter.textContent === currentFilter.textContent);
+    selectedFilter.style.display = 'none';
+  
+    allFilters.forEach(filter => {
+      filter.addEventListener('click', function () {
+        currentFilter.textContent = filter.textContent;
+        if (selectedFilter) selectedFilter.style.display = 'block';
+        selectedFilter = filter;
+        selectedFilter.style.display = 'none';
+      });
+    });
+  }
+
+
+  async function sortByPopularity() {
+    const photographersData = await fetchData();
+    const medias = photographersData.media;
+    const mediasByPopularity = [...medias].sort((a, b) => a.likes - b.likes);
+  
+    mediasContainer.innerHTML = "";
+    mediasByPopularity.forEach(media => {
+      if (media.photographerId === parseInt(photographerId)) {
+        createCardElement(media);
+      }
+    });
+    openLightboxPopularity();
+  }
+  
+  async function sortByTitle() {
+    const photographersData = await fetchData();
+    const medias = photographersData.media;
+    const mediasByTitle = [...medias].sort((a, b) => a.title.localeCompare(b.title));
+  
+    mediasContainer.innerHTML = "";
+    mediasByTitle.forEach(media => {
+      if (media.photographerId === parseInt(photographerId)) {
+        createCardElement(media);
+      }
+    });
+    openLightboxName();
+  }
+  
+  async function sortByDate() {
+    const photographersData = await fetchData();
+    const medias = photographersData.media;
+    const mediasByDate = [...medias].sort((a, b) => new Date(b.date) - new Date(a.date));
+  
+    mediasContainer.innerHTML = "";
+    mediasByDate.forEach(media => {
+      if (media.photographerId === parseInt(photographerId)) {
+        createCardElement(media);
+      }
+    });
+    openLightboxDate();
+  }
