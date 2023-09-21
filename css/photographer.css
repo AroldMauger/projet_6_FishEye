@@ -212,6 +212,8 @@ form input {
    padding:0px;
 }
 
+
+
 .main_photographer_filter {
     margin-bottom: 58px;
 }
@@ -227,6 +229,7 @@ form input {
     overflow: hidden;
     margin:0px;
     padding:0px;
+
 }
 
 .btn_drop {
@@ -239,6 +242,7 @@ form input {
     justify-content: space-between;
     gap: 18px;
     font-size: 18px;
+    cursor: pointer;
     font-weight: 700;
     width: 170px;
 }
@@ -254,7 +258,6 @@ form input {
     margin:0px;
     background: #901C1C;
     margin-left: 10px;
-
 }
 
 .option-filter button{
@@ -264,6 +267,8 @@ form input {
     font-size: 18px;
     font-weight: 700;
     padding : 23px 10px 23px 10px;
+    cursor: pointer;
+
 }
 
 .white-line {
@@ -365,6 +370,7 @@ form input {
 .likes-button {
     background-color: white;
     border: none;
+    cursor: pointer;
 }
 
 

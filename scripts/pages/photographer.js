@@ -114,10 +114,25 @@ function clickOnFilterButton () {
     likesContainer.classList.add("likes-container");
     const titleContainer = document.createElement("div");
     titleContainer.classList.add("title-container");
+    
+    function createMediaElement(media) {
+      if (media.video) {
+        const video = document.createElement("video");
+        video.src = `assets/Photographers_ID_Photos/${media.video}`;
+        video.controls = false;
+        video.classList.add("photo-from-photographer");
+        return video;
+      } else {
+        const image = document.createElement("img");
+        image.src = `assets/Photographers_ID_Photos/${media.image}`;
+        image.alt = media.title;
+        image.classList.add("photo-from-photographer");
+        return image;
+      }
+    }
 
-    const mediaFromPhotographer= document.createElement("img");
-    mediaFromPhotographer.setAttribute("src", `assets/Photographers_ID_Photos/${media.image}`); 
-    mediaFromPhotographer.classList.add("photo-from-photographer");
+    const mediaFromPhotographer = createMediaElement(media);
+
     
     const titleMedia = document.createElement("p");
     titleMedia.textContent = media.title;

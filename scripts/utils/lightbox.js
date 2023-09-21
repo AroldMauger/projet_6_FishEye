@@ -30,14 +30,27 @@ function displayCurrentMedia() {
     const lightboxMedia = document.querySelector(".lightbox_media");
     lightboxMedia.innerHTML = "";
 
-    const picture = document.createElement("img");
-    picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
-    picture.classList.add("lightbox_media_picture");
+    function createMediaElementLightbox(currentMedia) {
+        if(currentMedia.video) {
+            const video = document.createElement("video");
+            video.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.video}`);
+            video.controls = true;
+            video.classList.add("lightbox_media_picture");
+            return video;
+        } else {
+            const picture = document.createElement("img");
+            picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
+            picture.classList.add("lightbox_media_picture");
+            return picture;
+        }
+    }
+    const mediaElementInLightbox = createMediaElementLightbox(currentMedia)
+
 
     const titleMediaInLightbox = document.createElement("p");
     titleMediaInLightbox.textContent = currentMedia.title;
 
-    lightboxMedia.appendChild(picture);
+    lightboxMedia.appendChild(mediaElementInLightbox);
     lightboxMedia.appendChild(titleMediaInLightbox);
 
 }
