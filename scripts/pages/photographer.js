@@ -1,6 +1,5 @@
 import { openLightboxPopularity, openLightboxName, openLightboxDate  } from "../utils/lightbox.js";
 
-
 const urlParams = new URLSearchParams(window.location.search); // On récupère l'id de l'URL
 const photographerId = urlParams.get('id');
 const photographerHeader = document.querySelector(".photograph-header")
@@ -12,6 +11,7 @@ const buttonSortByDate = document.querySelector("#sort-by-date");
 const buttonFilters = document.querySelector(".btn_drop");
 const nameInModalContainer = document.querySelector(".name-in-contactModal");
 const dropDownFilters = document.querySelector(".dropdown_content");
+const dropDown = document.querySelector(".btn_drop");
 const chevronUp = document.querySelector(".fa-chevron-down")
 const allFilters = Array.from(document.querySelectorAll(".dropdown_content li button"));
 const currentFilter = document.querySelector("#current_filter");
@@ -177,9 +177,16 @@ function openFilters() {
     } else {
         dropDownFilters.style.display = "none";
         chevronUp.classList.remove("rotate");
-
     }
 }
+
+/* On ferme la modale 2 si on clique en dehors de la modale */
+window.addEventListener('click', function(e) {
+  if (e.target !== dropDown && e.target !== dropDownFilters && e.target !== currentFilter && e.target !== chevronUp) {
+    dropDownFilters.style.display = "none";
+    chevronUp.classList.remove("rotate");
+  }
+});
 
 
 function changingCurrentFilter() {

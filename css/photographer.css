@@ -215,7 +215,21 @@ form input {
    margin-top: 0px;
 }
 
+.dropdown_content li {
+    position: relative;
+    width: 150px;
+}
 
+.dropdown_content li ::before {
+   content: "";
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 1px;
+  background-color: white;
+}
 
 .main_photographer_filter {
     margin-bottom: 58px;
@@ -275,12 +289,12 @@ form input {
     cursor: pointer;
 
 }
-
+/*
 .white-line {
     border-bottom: white solid 1px;
     width: 130px;
 }
-
+*/
 #current_filter {
     margin-left: 7px;
 
