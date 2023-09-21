@@ -12,7 +12,7 @@ const buttonSortByDate = document.querySelector("#sort-by-date");
 const buttonFilters = document.querySelector(".btn_drop");
 const nameInModalContainer = document.querySelector(".name-in-contactModal");
 const dropDownFilters = document.querySelector(".dropdown_content");
-const chevronUp = document.querySelector(".fa-chevron-up")
+const chevronUp = document.querySelector(".fa-chevron-down")
 const allFilters = Array.from(document.querySelectorAll(".dropdown_content li button"));
 const currentFilter = document.querySelector("#current_filter");
 

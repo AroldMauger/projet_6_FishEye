@@ -1,4 +1,6 @@
-
+* {
+    box-sizing: border-box;
+}
 
 #contact_modal {
     display: none;
@@ -207,9 +209,10 @@ form input {
 }
 
 .dropdown_content {
-   border-radius: 5px;
+   border-radius: 0px 0px 5px 5px;
    background: #901C1C;
    padding:0px;
+   margin-top: 0px;
 }
 
 
@@ -233,7 +236,7 @@ form input {
 }
 
 .btn_drop {
-    border-radius: 5px;
+    border-radius: 5px 5px 0px 0px;
     background: #901C1C;
     transition: max-height .1s ease-in-out;
     color:white;
@@ -245,7 +248,9 @@ form input {
     cursor: pointer;
     font-weight: 700;
     width: 170px;
+    border : none;
 }
+
 
 .option-filter{
     transition: max-height .1s ease-in-out;
@@ -281,7 +286,7 @@ form input {
 
 }
 
-.fa-chevron-up {
+.fa-chevron-down {
     margin-right: 10px;
 }
 
