@@ -27,7 +27,12 @@ async function displayPhotographerInfo(id, photographersData) {
 
     const photographer = photographersData.photographers.find(photographer => photographer.id === parseInt(id));
 
-// Cette fonction va nous permettre d'économiser des lignes de code pour générer les éléments textuels du DOM
+    if (!photographer) {
+      window.location.href = 'index.html';
+  } else {
+
+
+    // Cette fonction va nous permettre d'économiser des lignes de code pour générer les éléments textuels du DOM
     function createTextualElements(tag, textContent, className) {  // Chaque élément textuel aura un tag (balise), un contenu "textContent", et une class facultative
         const element = document.createElement(tag);
         element.textContent = textContent;
@@ -57,7 +62,7 @@ async function displayPhotographerInfo(id, photographersData) {
 
         
     }
-
+  }
 
 // FONCTION QUI GENERE LES MEDIAS AU CHARGEMENT DE LA PAGE EN FONCTION DE L'ID DU PHOTOGRAPHE
 export async function displayPhotographerMedias(id, photographersData) {

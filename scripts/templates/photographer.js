@@ -49,3 +49,6 @@
     return { name, picture, city, country, tagline, price, id, getUserCardDOM }
 }
 
+
+
+
