@@ -173,10 +173,12 @@ function openFilters() {
 	if(dropDownFilters.style.display === "none") {
 		dropDownFilters.style.display = "block";
 		chevronUp.classList.add("rotate");
+		dropDownFilters.setAttribute("aria-hidden", "false");
 
 	} else {
 		dropDownFilters.style.display = "none";
 		chevronUp.classList.remove("rotate");
+		dropDownFilters.setAttribute("aria-hidden", "true");
 	}
 }
 
@@ -185,6 +187,7 @@ window.addEventListener("click", function(e) {
 	if (e.target !== dropDown && e.target !== dropDownFilters && e.target !== currentFilter && e.target !== chevronUp) {
 		dropDownFilters.style.display = "none";
 		chevronUp.classList.remove("rotate");
+		dropDownFilters.setAttribute("aria-hidden", "true");
 	}
 });
 
