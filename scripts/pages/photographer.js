@@ -106,11 +106,11 @@ function createCardElement(media) {
 
 	const divCardContainer = document.createElement("div");
 	divCardContainer.classList.add("div-card-container");
-   
+
 	const cardContainer = document.createElement("a");
 	cardContainer.classList.add("card-container");
-	cardContainer.setAttribute("id", media.id); 
-
+	cardContainer.setAttribute("id", media.id); 	
+	cardContainer.setAttribute("tabindex", "0"); 
 
 	const likesContainer = document.createElement("div");
 	likesContainer.classList.add("likes-container");
@@ -146,6 +146,7 @@ function createCardElement(media) {
 	likesButton.setAttribute("id", media.id); 
 	likesButton.classList.add("likes-button");
 	likesButton.setAttribute("liked", "false");    // cette ligne va permettre de gérer la resctriction de l'incrémentation des likes
+	likesButton.setAttribute("role", "button");   
 
 	const heartIcone = document.createElement("i");
 	heartIcone.className ="fa-solid fa-heart";
