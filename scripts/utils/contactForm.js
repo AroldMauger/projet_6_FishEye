@@ -3,16 +3,31 @@ const lastName = document.querySelector("#last-name");
 const email = document.querySelector("#email");
 const message = document.querySelector("#message");
 const form = document.querySelector("form")
+const buttonHeader = document.querySelector(".button-header");
+const closeButton = document.querySelector(".close-form-modal");
 
-
+buttonHeader.addEventListener("click", displayModal)
 function displayModal() {
-    const modal = document.getElementById("contact_modal");
+  const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
+  modal.setAttribute("aria-hidden", "false");
+  closeButton.focus();
 }
+
+buttonHeader.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    displayModal()
+}});
+
+
+
 
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true");
+    modal.removeAttribute('aria-modal');
+
 }
 
 

@@ -12,14 +12,14 @@
   <body>
     <header>
     <a href="/index.html">
-      <img src="assets/images/logo.png" class="logo" />
+      <img src="assets/images/logo.png" class="logo" alt="Fisheye logo" aria-label="Return to home page"/>
     </a>
     </header>  
     <section class="info-photographer">
         <div class="photograph-header">
           <div class="header-info">
           </div>
-          <button class="contact_button button-header" onclick="displayModal()">Contactez-moi</button>
+          <button class="contact_button button-header" role="button">Contactez-moi</button>
         </div>
       </section>
     <main id="main">
@@ -37,10 +37,10 @@
                             <li class="option-filter" role="option">
                               <button id="sort-by-popularity" type="button">Popularité</button>
                             </li>
-                            <li class="option-filter white-line" role="option">
+                            <li class="option-filter" role="option">
                                 <button id="sort-by-date" type="button">Date</button>
                             </li>
-                            <li class="option-filter white-line" role="option">
+                            <li class="option-filter" role="option">
                                 <button id="sort-by-title" type="button">Titre</button>
                             </li>
                            
@@ -59,31 +59,31 @@
     
     <!-- FORMULAIRE MODAL-->
 
-    <div id="contact_modal">
-			<div class="modal">
+    <div id="contact_modal" aria-hidden="true" role="dialog" aria-modal="true" aria-describedby="Contact form" tabindex="1" >
+			<div class="modal" role="document">
 				<header class="header-in-contactModal">
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" class="close-form-modal" onclick="closeModal()" tabindex="1" aria-label="Close modal"/>
         </header>
         <div class="name-in-contactModal"></div>
 				<form>
 					<div class="fields-in-form">
 						<label for="first-name">Prénom</label>
-						<input id="first-name" type="text" required>
+						<input id="first-name" type="text" tabindex="1" required focusable="true">
             <label for="last-name">Nom</label>
-						<input id="last-name" type="text" required>
+						<input id="last-name" type="text" tabindex="1" required>
             <label for="email">Email</label>
-						<input id="email" type="text" pattern="[a-z0-9.-_]+@[a-z0-9.-_]+\.[a-z]{2,4}" required>
+						<input id="email" type="text" pattern="[a-z0-9.-_]+@[a-z0-9.-_]+\.[a-z]{2,4}" tabindex="1" required>
             <label for="message">Votre message</label>
-						<input id="message" type="text" required>
+						<input id="message" type="text" tabindex="1" required>
 					</div>
-          <button class="contact_button" type="submit">Envoyer</button>
+          <button class="contact_button" type="submit" tabindex="1" aria-label="Send">Envoyer</button>
 				</form>
 			</div>
 		</div>
 
     <!-- Lightbox -->
-    <div class="lightbox_container" style="display: none;">
+    <div class="lightbox_container" style="display: none;" aria-hidden="true" role="dialog">
     
       <div class="lightbox">
           <button class="button_previous_lightbox button_lightbox">
@@ -104,7 +104,6 @@
     </div>
 
  
-    <script src="scripts/templates/photographer.js"></script>
     <script type="module" src="/scripts/utils/filters.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
     <script type="module" src="/scripts/utils/lightbox.js"></script>

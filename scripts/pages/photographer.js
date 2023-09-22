@@ -15,6 +15,7 @@ const dropDown = document.querySelector(".btn_drop");
 const chevronUp = document.querySelector(".fa-chevron-down");
 const allFilters = Array.from(document.querySelectorAll(".dropdown_content li button"));
 const currentFilter = document.querySelector("#current_filter");
+const buttonHeader = document.querySelector(".button-header");
 
 export async function fetchData() {
 	const response = await fetch("/data/photographers.json"); 
@@ -148,6 +149,14 @@ function createCardElement(media) {
 	likesButton.setAttribute("liked", "false");    // cette ligne va permettre de gérer la resctriction de l'incrémentation des likes
 	likesButton.setAttribute("role", "button");   
 
+
+	likesButton.addEventListener("focus", function() {   		// On masque les filtres lorsque le focus est sur un likesButton
+		dropDownFilters.style.display = "none";
+		chevronUp.classList.remove("rotate");
+		dropDownFilters.setAttribute("aria-hidden", "true");
+	});
+
+
 	const heartIcone = document.createElement("i");
 	heartIcone.className ="fa-solid fa-heart";
 
@@ -183,7 +192,8 @@ function openFilters() {
 	}
 }
 
-/* On ferme la modale 2 si on clique en dehors de la modale */
+
+/* On ferme les filtres si on clique en dehors des filtres */
 window.addEventListener("click", function(e) {
 	if (e.target !== dropDown && e.target !== dropDownFilters && e.target !== currentFilter && e.target !== chevronUp) {
 		dropDownFilters.style.display = "none";
@@ -191,6 +201,15 @@ window.addEventListener("click", function(e) {
 		dropDownFilters.setAttribute("aria-hidden", "true");
 	}
 });
+
+/* On ferme les filtres quand le bouton "Contactez-moi" est focuse */
+
+buttonHeader.addEventListener("focus", function() {   
+	dropDownFilters.style.display = "none";
+	chevronUp.classList.remove("rotate");
+	dropDownFilters.setAttribute("aria-hidden", "true");
+});
+
 
 
 function changingCurrentFilter() {
@@ -205,7 +224,7 @@ function changingCurrentFilter() {
 			selectedFilter.style.display = "none";
 		});
 	});
-
+	
 }
 
 
@@ -295,7 +314,7 @@ function incrementLikes(id, photographersData) {
 
 	const likesButtons = document.querySelectorAll(".likes-button");
 
-
+	
   
 	likesButtons.forEach(likesButton => {
 		likesButton.addEventListener("click",  function () {

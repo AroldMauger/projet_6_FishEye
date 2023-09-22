@@ -9,17 +9,17 @@ const photographerId = parseInt(urlParams.get('id')); // Convertir en nombre
 let currentIndex = 0;
 const response = await fetch('/data/photographers.json');
 const photographersData = await response.json();
+
 const medias = photographersData.media
 const filteredMedias = medias.filter(media => media.photographerId === photographerId); 
-const id = photographerId
-
-const photographer = photographersData.photographers.find(photographer => photographer.id === parseInt(id));
 
 // FERMETURE DE LA LIGHTBOX
 closeButtonInLightbox.addEventListener("click", closeLightbox);
 
 function closeLightbox() {
     lightBoxContainer.style.display = "none";
+    lightBoxContainer.setAttribute("aria-hidden", "true");
+    lightBoxContainer.removeAttribute('aria-modal');
 }
 
 // AFFICHER L'IMAGE ACTUELLE
@@ -34,6 +34,7 @@ function displayCurrentMedia() {
         if(currentMedia.video) {
             const video = document.createElement("video");
             video.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.video}`);
+			video.setAttribute("alt", currentMedia.title);
             video.controls = true;
             video.classList.add("lightbox_media_picture");
             return video;
@@ -41,6 +42,8 @@ function displayCurrentMedia() {
             const picture = document.createElement("img");
             picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
             picture.classList.add("lightbox_media_picture");
+            picture.setAttribute("alt", currentMedia.title);
+
             return picture;
         }
     }
@@ -92,7 +95,9 @@ export function openLightboxPopularity() {
     mediaProvider.forEach(mediaCard => {
         mediaCard.addEventListener('click', function() {
             lightBoxContainer.style.display = "flex";
-           
+            lightBoxContainer.setAttribute("aria-hidden", "false");
+            lightBoxContainer.setAttribute("aria-modal", "true");
+
             const mediaId = mediaCard.id;
             currentIndex = filteredMediasByPopularity.findIndex(media => media.id == mediaId);
 
@@ -107,11 +112,14 @@ export function openLightboxPopularity() {
                     video.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.video}`);
                     video.controls = true;
                     video.classList.add("lightbox_media_picture");
+                    video.setAttribute("alt", currentMedia.title);
                     return video;
                 } else {
                     const picture = document.createElement("img");
                     picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
                     picture.classList.add("lightbox_media_picture");
+                    picture.setAttribute("alt", currentMedia.title);
+
                     return picture;
                 }
             }
@@ -143,7 +151,8 @@ export function openLightboxDate() {
     mediaProvider.forEach(mediaCard => {
         mediaCard.addEventListener('click', function() {
             lightBoxContainer.style.display = "flex";
-           
+            lightBoxContainer.setAttribute("aria-hidden", "false");
+
             const mediaId = mediaCard.id;
             currentIndex = filteredMediasByDate.findIndex(media => media.id == mediaId);
 
@@ -158,11 +167,13 @@ export function openLightboxDate() {
                     video.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.video}`);
                     video.controls = true;
                     video.classList.add("lightbox_media_picture");
+                    video.setAttribute("alt", currentMedia.title);
                     return video;
                 } else {
                     const picture = document.createElement("img");
                     picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
                     picture.classList.add("lightbox_media_picture");
+                    picture.setAttribute("alt", currentMedia.title);
                     return picture;
                 }
             }
@@ -193,7 +204,8 @@ export function openLightboxName() {
     mediaProvider.forEach(mediaCard => {
         mediaCard.addEventListener('click', function() {
             lightBoxContainer.style.display = "flex";
-           
+            lightBoxContainer.setAttribute("aria-hidden", "false");
+
             const mediaId = mediaCard.id;
             currentIndex = filteredMediasByTitle.findIndex(media => media.id == mediaId);
 
@@ -207,11 +219,13 @@ export function openLightboxName() {
                     video.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.video}`);
                     video.controls = true;
                     video.classList.add("lightbox_media_picture");
+                    video.setAttribute("alt", currentMedia.title);
                     return video;
                 } else {
                     const picture = document.createElement("img");
                     picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
                     picture.classList.add("lightbox_media_picture");
+                    picture.setAttribute("alt", currentMedia.title);
                     return picture;
                 }
             }
