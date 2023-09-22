@@ -157,6 +157,7 @@ form input {
     display: flex;
     flex-wrap: wrap;
     gap: 20px 90px;
+    justify-content: space-between;
 }
 
 .photo-from-photographer {
@@ -398,16 +399,19 @@ form input {
 .total-likes-and-price {
     position: fixed;
     z-index: 2;
-    width: 375px;
-    height: 90px;
+    right:150px;
+    bottom: 0px;
+    width: 300px;
+    height: 50px;
     background: #DB8876;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    left : 1000px;
-    top: 857px;
     color:black;
+    font-size: 20px;
+    font-weight: bolder;
+    border-radius: 5px 5px 0px 0px;
 }
 .total-likes-and-price i{
     color:black;

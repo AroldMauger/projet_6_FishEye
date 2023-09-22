@@ -269,6 +269,8 @@ let totalLikes = 0;
 
   totalLikes = filteredMedias.reduce((total, media) => total + media.likes, 0);
 
+  const divInAside = document.createElement("div");
+  divInAside.classList.add("div-in-aside");
 
   const numberOfTotalLikes = document.createElement("span");
   numberOfTotalLikes.textContent = totalLikes.toString();
@@ -276,12 +278,15 @@ let totalLikes = 0;
 
   const heartInAside = document.createElement("i");
   heartInAside.className = "fa-solid fa-heart";
+
   const price = document.createElement("span");
   price.textContent = `${photographer.price} / jour`;
 
   totalLikesAndPrice.innerHTML = "";
-  totalLikesAndPrice.appendChild(numberOfTotalLikes);
-  totalLikesAndPrice.appendChild(heartInAside);
+  divInAside.appendChild(numberOfTotalLikes);
+  divInAside.appendChild(heartInAside);
+  totalLikesAndPrice.appendChild(divInAside);
+
   totalLikesAndPrice.appendChild(price);
 
   const likesButtons = document.querySelectorAll(".likes-button");
