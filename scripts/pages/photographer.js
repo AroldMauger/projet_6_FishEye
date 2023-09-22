@@ -36,10 +36,6 @@ async function displayPhotographerInfo(id, photographersData) {
 	if (!photographer) {
 		window.location.href = "index.html";
 	} else {
-
-
-  
-      
 		// On affiche les informations du photographe
 		const namePhotographer = createTextualElements("p", photographer.name, "name-in-header");
 		const locationPhotographer = createTextualElements("p", `${photographer.city}, ${photographer.country}`, "location-in-header");
@@ -63,7 +59,6 @@ async function displayPhotographerInfo(id, photographersData) {
         
 	}
 }
-
 // FONCTION QUI GENERE LES MEDIAS AU CHARGEMENT DE LA PAGE EN FONCTION DE L'ID DU PHOTOGRAPHE
 export async function displayPhotographerMedias(id, photographersData) {
 	const medias = photographersData.media;
@@ -72,6 +67,7 @@ export async function displayPhotographerMedias(id, photographersData) {
 	mediasContainer.innerHTML = "";
 	mediasByPopularity.forEach(media => {
 		if (media.photographerId === parseInt(photographerId)) {
+			
 			createCardElement(media);
 		}
 	});
@@ -106,7 +102,8 @@ function clickOnFilterButton () {
 
 
 function createCardElement(media) {
-        
+	
+
 	const divCardContainer = document.createElement("div");
 	divCardContainer.classList.add("div-card-container");
    
@@ -121,17 +118,20 @@ function createCardElement(media) {
 	titleContainer.classList.add("title-container");
     
 	function createMediaElement(media) {
+		
 		if (media.video) {
 			const video = document.createElement("video");
 			video.src = `assets/Photographers_ID_Photos/${media.video}`;
 			video.controls = false;
 			video.classList.add("photo-from-photographer");
+			video.setAttribute("alt", media.title);
 			return video;
 		} else {
 			const image = document.createElement("img");
 			image.src = `assets/Photographers_ID_Photos/${media.image}`;
 			image.alt = media.title;
 			image.classList.add("photo-from-photographer");
+			image.setAttribute("alt", media.title);
 			return image;
 		}
 	}
