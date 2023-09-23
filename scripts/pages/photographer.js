@@ -113,6 +113,12 @@ function createCardElement(media) {
 	cardContainer.setAttribute("id", media.id); 	
 	cardContainer.setAttribute("tabindex", "0"); 
 
+	cardContainer.addEventListener("focus", function() {   		// On masque les filtres lorsque le focus est sur un likesButton
+		dropDownFilters.style.display = "none";
+		chevronUp.classList.remove("rotate");
+		dropDownFilters.setAttribute("aria-hidden", "true");
+	});
+
 	const likesContainer = document.createElement("div");
 	likesContainer.classList.add("likes-container");
 	const titleContainer = document.createElement("div");
@@ -148,13 +154,9 @@ function createCardElement(media) {
 	likesButton.classList.add("likes-button");
 	likesButton.setAttribute("liked", "false");    // cette ligne va permettre de gérer la resctriction de l'incrémentation des likes
 	likesButton.setAttribute("role", "button");   
-
-
-	likesButton.addEventListener("focus", function() {   		// On masque les filtres lorsque le focus est sur un likesButton
-		dropDownFilters.style.display = "none";
-		chevronUp.classList.remove("rotate");
-		dropDownFilters.setAttribute("aria-hidden", "true");
-	});
+	likesButton.setAttribute("tabindex", "0");
+	
+	
 
 
 	const heartIcone = document.createElement("i");
@@ -165,6 +167,8 @@ function createCardElement(media) {
 	likesPhotographer.classList.add("number-of-likes");
 	likesPhotographer.setAttribute("id", media.id); 
 
+	divCardContainer.appendChild(cardContainer);
+	mediasContainer.appendChild(divCardContainer);
 	likesContainer.appendChild(likesPhotographer);
 	titleContainer.appendChild(likesContainer);
 	titleContainer.appendChild(titleMedia);
@@ -172,11 +176,9 @@ function createCardElement(media) {
 	likesContainer.appendChild(likesButton);
 	divCardContainer.appendChild(titleContainer);
 	cardContainer.appendChild(mediaFromPhotographer);
-	divCardContainer.appendChild(cardContainer);
-	mediasContainer.appendChild(divCardContainer);
+	
 
 }
-
 
 // GESTION DES FILTRES
 function openFilters() {
@@ -191,6 +193,7 @@ function openFilters() {
 		dropDownFilters.setAttribute("aria-hidden", "true");
 	}
 }
+
 
 
 /* On ferme les filtres si on clique en dehors des filtres */
