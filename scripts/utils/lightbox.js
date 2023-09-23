@@ -1,5 +1,5 @@
 
-const closeButtonInLightbox = document.querySelector(".icon-close-lightbox");
+const closeButtonInLightbox = document.querySelector(".button_close_lightbox");
 const lightBoxContainer = document.querySelector(".lightbox_container");
 const previousButton = document.querySelector(".button_previous_lightbox");
 const nextButton = document.querySelector(".button_next_lightbox");
@@ -16,6 +16,11 @@ const filteredMedias = medias.filter(media => media.photographerId === photograp
 // FERMETURE DE LA LIGHTBOX
 closeButtonInLightbox.addEventListener("click", closeLightbox);
 
+closeButtonInLightbox.addEventListener("keydown", function(e){
+    if(e.key === "Enter") {
+        closeLightbox();
+    }
+})
 
 function closeLightbox() {
     lightBoxContainer.style.display = "none";
@@ -29,6 +34,8 @@ window.addEventListener('keydown', function(e){
         closeLightbox(e)
     }
 }) 
+
+
 
 // AFFICHER L'IMAGE ACTUELLE
 function displayCurrentMedia() {
@@ -63,7 +70,6 @@ function displayCurrentMedia() {
 
     lightboxMedia.appendChild(mediaElementInLightbox);
     lightboxMedia.appendChild(titleMediaInLightbox);
-
 }
 
 previousButton.addEventListener("click", previousMedia);
@@ -130,6 +136,7 @@ export function openLightboxPopularity() {
 
     lightboxMedia.appendChild(mediaElementInLightbox);
     lightboxMedia.appendChild(titleMediaInLightbox);
+    
   }
 
   const mediaProvider = Array.from(document.querySelectorAll('.card-container'));
@@ -137,14 +144,20 @@ export function openLightboxPopularity() {
   mediaProvider.forEach(mediaCard => {
     mediaCard.addEventListener('click', function () {
       mediasInLightbox(mediaCard);
+
     });
 
     mediaCard.addEventListener('keydown', function (event) {
       if (event.key === "Enter") {
         mediasInLightbox(mediaCard);
+        event.preventDefault()
+        closeButtonInLightbox.focus();   // ICI CA MARCHE
+
       }
-    });
+    }
+    );
   });
+
 }
 
 

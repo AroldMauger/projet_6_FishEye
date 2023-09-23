@@ -74,7 +74,7 @@ export async function displayPhotographerMedias(id, photographersData) {
 	});
    
 	openLightboxPopularity();
- 
+
 }
 
 // Appels aux fonctions

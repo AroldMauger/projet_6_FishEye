@@ -69,7 +69,7 @@
 				<form>
 					<div class="fields-in-form">
 						<label for="first-name">Prénom</label>
-						<input id="first-name" type="text" tabindex="1" required focusable="true">
+						<input id="first-name" type="text" tabindex="1" required>
             <label for="last-name">Nom</label>
 						<input id="last-name" type="text" tabindex="1" required>
             <label for="email">Email</label>
@@ -86,15 +86,15 @@
     <div class="lightbox_container" style="display: none;" aria-hidden="true" role="dialog">
     
       <div class="lightbox">
-          <button class="button_previous_lightbox button_lightbox">
+          <button class="button_previous_lightbox button_lightbox" tabindex="1">
             <i class="fa-solid fa-chevron-left"></i>         
            </button>
           <figure class="lightbox_media" role="media"></figure>
           <div class="right-side-lightbox">
-            <button class="button_next_lightbox button_lightbox">
+            <button class="button_next_lightbox button_lightbox" tabindex="1">
               <i class="fa-solid fa-chevron-right"></i>          
             </button>
-            <button class="button_close_lightbox">          
+            <button class="button_close_lightbox" tabindex="2">          
               <img class="icon-close-lightbox" src="assets/icons/close-red.png"/>
             </button>
           </div>

@@ -42,10 +42,7 @@ closeButton.addEventListener("keydown", function (event) {
   } else if (event.key === "Enter") {
     closeModal()
   }
-  
 });
-
-
 
 function closeModal() {
     const modal = document.getElementById("contact_modal");
