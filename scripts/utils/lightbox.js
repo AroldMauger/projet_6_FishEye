@@ -16,11 +16,19 @@ const filteredMedias = medias.filter(media => media.photographerId === photograp
 // FERMETURE DE LA LIGHTBOX
 closeButtonInLightbox.addEventListener("click", closeLightbox);
 
+
 function closeLightbox() {
     lightBoxContainer.style.display = "none";
     lightBoxContainer.setAttribute("aria-hidden", "true");
     lightBoxContainer.removeAttribute('aria-modal');
 }
+
+// On ferme la lightbox quand on appuie sur la touche Escape
+window.addEventListener('keydown', function(e){ 
+    if (e.key === "Escape" || e.key === "Esc") {
+        closeLightbox(e)
+    }
+}) 
 
 // AFFICHER L'IMAGE ACTUELLE
 function displayCurrentMedia() {
@@ -78,62 +86,65 @@ function nextMedia() {
     displayCurrentMedia();
 }
 
-
-
-
-
 // LIGHTBOX POPULARITY
 // OUVERTURE DE LA LIGHTBOX
 export function openLightboxPopularity() {
+  const filteredMediasByPopularity = filteredMedias.sort(function (a, b) {
+    return a.likes - b.likes;
+  });
 
-    const filteredMediasByPopularity = filteredMedias.sort(function (a, b) {
-        return a.likes - b.likes;
+  function mediasInLightbox(mediaCard) {
+    lightBoxContainer.style.display = "flex";
+    lightBoxContainer.setAttribute("aria-hidden", "false");
+    lightBoxContainer.setAttribute("aria-modal", "true");
+
+    const mediaId = mediaCard.id;
+    currentIndex = filteredMediasByPopularity.findIndex(media => media.id == mediaId);
+
+    const currentMedia = filteredMediasByPopularity[currentIndex];
+
+    const lightboxMedia = document.querySelector(".lightbox_media");
+    lightboxMedia.innerHTML = "";
+
+    function createMediaElementLightbox(currentMedia) {
+      if (currentMedia.video) {
+        const video = document.createElement("video");
+        video.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.video}`);
+        video.controls = true;
+        video.classList.add("lightbox_media_picture");
+        video.setAttribute("alt", currentMedia.title);
+        return video;
+      } else {
+        const picture = document.createElement("img");
+        picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
+        picture.classList.add("lightbox_media_picture");
+        picture.setAttribute("alt", currentMedia.title);
+        return picture;
+      }
+    }
+
+    const mediaElementInLightbox = createMediaElementLightbox(currentMedia);
+
+    const titleMediaInLightbox = document.createElement("p");
+    titleMediaInLightbox.textContent = currentMedia.title;
+
+    lightboxMedia.appendChild(mediaElementInLightbox);
+    lightboxMedia.appendChild(titleMediaInLightbox);
+  }
+
+  const mediaProvider = Array.from(document.querySelectorAll('.card-container'));
+
+  mediaProvider.forEach(mediaCard => {
+    mediaCard.addEventListener('click', function () {
+      mediasInLightbox(mediaCard);
     });
 
-    const mediaProvider = Array.from(document.querySelectorAll('.card-container'));
-
-    mediaProvider.forEach(mediaCard => {
-        mediaCard.addEventListener('click', function() {
-            lightBoxContainer.style.display = "flex";
-            lightBoxContainer.setAttribute("aria-hidden", "false");
-            lightBoxContainer.setAttribute("aria-modal", "true");
-
-            const mediaId = mediaCard.id;
-            currentIndex = filteredMediasByPopularity.findIndex(media => media.id == mediaId);
-
-            const currentMedia = filteredMediasByPopularity[currentIndex];  // currentMedia est l'objet du JSON qui est affiché
-
-            const lightboxMedia = document.querySelector(".lightbox_media");
-            lightboxMedia.innerHTML = "";
-        
-            function createMediaElementLightbox(currentMedia) {
-                if(currentMedia.video) {
-                    const video = document.createElement("video");
-                    video.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.video}`);
-                    video.controls = true;
-                    video.classList.add("lightbox_media_picture");
-                    video.setAttribute("alt", currentMedia.title);
-                    return video;
-                } else {
-                    const picture = document.createElement("img");
-                    picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
-                    picture.classList.add("lightbox_media_picture");
-                    picture.setAttribute("alt", currentMedia.title);
-
-                    return picture;
-                }
-            }
-            const mediaElementInLightbox = createMediaElementLightbox(currentMedia)
-        
-        
-            const titleMediaInLightbox = document.createElement("p");
-            titleMediaInLightbox.textContent = currentMedia.title;
-        
-            lightboxMedia.appendChild(mediaElementInLightbox);
-            lightboxMedia.appendChild(titleMediaInLightbox);
-        });
+    mediaCard.addEventListener('keydown', function (event) {
+      if (event.key === "Enter") {
+        mediasInLightbox(mediaCard);
+      }
     });
-
+  });
 }
 
 
@@ -142,53 +153,62 @@ export function openLightboxPopularity() {
 // OUVERTURE DE LA LIGHTBOX
 export function openLightboxDate() {
 
-
     const filteredMediasByDate = filteredMedias.sort(function (a, b) { 
         return new Date(b.date) - new Date(a.date)
     });
-    const mediaProvider = Array.from(document.querySelectorAll('.card-container'));
 
-    mediaProvider.forEach(mediaCard => {
-        mediaCard.addEventListener('click', function() {
-            lightBoxContainer.style.display = "flex";
-            lightBoxContainer.setAttribute("aria-hidden", "false");
+    function mediasInLightbox(mediaCard){
+        lightBoxContainer.style.display = "flex";
+        lightBoxContainer.setAttribute("aria-hidden", "false");
 
-            const mediaId = mediaCard.id;
-            currentIndex = filteredMediasByDate.findIndex(media => media.id == mediaId);
+        const mediaId = mediaCard.id;
+        currentIndex = filteredMediasByDate.findIndex(media => media.id == mediaId);
 
-            const currentMedia = filteredMediasByDate[currentIndex];  // currentMedia est l'objet du JSON qui est affiché
+        const currentMedia = filteredMediasByDate[currentIndex];  // currentMedia est l'objet du JSON qui est affiché
 
-            const lightboxMedia = document.querySelector(".lightbox_media");
-            lightboxMedia.innerHTML = "";
+        const lightboxMedia = document.querySelector(".lightbox_media");
+        lightboxMedia.innerHTML = "";
 
-            function createMediaElementLightbox(currentMedia) {
-                if(currentMedia.video) {
-                    const video = document.createElement("video");
-                    video.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.video}`);
-                    video.controls = true;
-                    video.classList.add("lightbox_media_picture");
-                    video.setAttribute("alt", currentMedia.title);
-                    return video;
-                } else {
-                    const picture = document.createElement("img");
-                    picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
-                    picture.classList.add("lightbox_media_picture");
-                    picture.setAttribute("alt", currentMedia.title);
-                    return picture;
-                }
+        function createMediaElementLightbox(currentMedia) {
+            if(currentMedia.video) {
+                const video = document.createElement("video");
+                video.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.video}`);
+                video.controls = true;
+                video.classList.add("lightbox_media_picture");
+                video.setAttribute("alt", currentMedia.title);
+                return video;
+            } else {
+                const picture = document.createElement("img");
+                picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
+                picture.classList.add("lightbox_media_picture");
+                picture.setAttribute("alt", currentMedia.title);
+                return picture;
             }
-            const mediaElementInLightbox = createMediaElementLightbox(currentMedia)
-        
-        
-            const titleMediaInLightbox = document.createElement("p");
-            titleMediaInLightbox.textContent = currentMedia.title;
-        
-            lightboxMedia.appendChild(mediaElementInLightbox);
-            lightboxMedia.appendChild(titleMediaInLightbox);
-        });
-    });
-}
+        }
+        const mediaElementInLightbox = createMediaElementLightbox(currentMedia)
+    
+    
+        const titleMediaInLightbox = document.createElement("p");
+        titleMediaInLightbox.textContent = currentMedia.title;
+    
+        lightboxMedia.appendChild(mediaElementInLightbox);
+        lightboxMedia.appendChild(titleMediaInLightbox);
+    }
+        const mediaProvider = Array.from(document.querySelectorAll('.card-container'));
 
+        mediaProvider.forEach(mediaCard => {
+            mediaCard.addEventListener('click', function () {
+            mediasInLightbox(mediaCard);
+            });
+        
+        mediaCard.addEventListener('keydown', function (event) {
+        if (event.key === "Enter") {
+        mediasInLightbox(mediaCard);
+        }
+        });
+    })
+}
+    
 
 
 // LIGHTBOX NOM
@@ -199,48 +219,56 @@ export function openLightboxName() {
     const filteredMediasByTitle = filteredMedias.sort(function (a, b) { 
         return a.title.localeCompare(b.title); //filtrer par ordre alphabétique
     });
+    function mediasInLightbox(mediaCard) {
+        lightBoxContainer.style.display = "flex";
+        lightBoxContainer.setAttribute("aria-hidden", "false");
+
+        const mediaId = mediaCard.id;
+        currentIndex = filteredMediasByTitle.findIndex(media => media.id == mediaId);
+
+        const currentMedia = filteredMediasByTitle[currentIndex];  // currentMedia est l'objet du JSON qui est affiché
+        const lightboxMedia = document.querySelector(".lightbox_media");
+        lightboxMedia.innerHTML = "";
+    
+        function createMediaElementLightbox(currentMedia) {
+            if(currentMedia.video) {
+                const video = document.createElement("video");
+                video.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.video}`);
+                video.controls = true;
+                video.classList.add("lightbox_media_picture");
+                video.setAttribute("alt", currentMedia.title);
+                return video;
+            } else {
+                const picture = document.createElement("img");
+                picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
+                picture.classList.add("lightbox_media_picture");
+                picture.setAttribute("alt", currentMedia.title);
+                return picture;
+            }
+        }
+        const mediaElementInLightbox = createMediaElementLightbox(currentMedia)
+    
+    
+        const titleMediaInLightbox = document.createElement("p");
+        titleMediaInLightbox.textContent = currentMedia.title;
+    
+        lightboxMedia.appendChild(mediaElementInLightbox);
+        lightboxMedia.appendChild(titleMediaInLightbox);
+    }
+    
     const mediaProvider = Array.from(document.querySelectorAll('.card-container'));
 
     mediaProvider.forEach(mediaCard => {
-        mediaCard.addEventListener('click', function() {
-            lightBoxContainer.style.display = "flex";
-            lightBoxContainer.setAttribute("aria-hidden", "false");
+        mediaCard.addEventListener('click', function () {
+        mediasInLightbox(mediaCard);
+        });
 
-            const mediaId = mediaCard.id;
-            currentIndex = filteredMediasByTitle.findIndex(media => media.id == mediaId);
-
-            const currentMedia = filteredMediasByTitle[currentIndex];  // currentMedia est l'objet du JSON qui est affiché
-            const lightboxMedia = document.querySelector(".lightbox_media");
-            lightboxMedia.innerHTML = "";
-        
-            function createMediaElementLightbox(currentMedia) {
-                if(currentMedia.video) {
-                    const video = document.createElement("video");
-                    video.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.video}`);
-                    video.controls = true;
-                    video.classList.add("lightbox_media_picture");
-                    video.setAttribute("alt", currentMedia.title);
-                    return video;
-                } else {
-                    const picture = document.createElement("img");
-                    picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
-                    picture.classList.add("lightbox_media_picture");
-                    picture.setAttribute("alt", currentMedia.title);
-                    return picture;
-                }
-            }
-            const mediaElementInLightbox = createMediaElementLightbox(currentMedia)
-        
-        
-            const titleMediaInLightbox = document.createElement("p");
-            titleMediaInLightbox.textContent = currentMedia.title;
-        
-            lightboxMedia.appendChild(mediaElementInLightbox);
-            lightboxMedia.appendChild(titleMediaInLightbox);
+        mediaCard.addEventListener('keydown', function (event) {
+        if (event.key === "Enter") {
+            mediasInLightbox(mediaCard);
+        }
         });
     });
 }
-
-
 
 

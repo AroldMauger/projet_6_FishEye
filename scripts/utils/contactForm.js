@@ -55,6 +55,13 @@ function closeModal() {
 
 }
 
+// On ferme la lightbox quand on appuie sur la touche Escape
+window.addEventListener('keydown', function(e){ 
+  if (e.key === "Escape" || e.key === "Esc") {
+    closeModal(e)
+  }
+}) 
+
 
 form.addEventListener("submit", validate);
 

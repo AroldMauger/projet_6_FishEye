@@ -1,4 +1,4 @@
-import { openLightboxPopularity, openLightboxName, openLightboxDate  } from "../utils/lightbox.js";
+import {openLightboxPopularity, openLightboxName, openLightboxDate  } from "../utils/lightbox.js";
 
 const urlParams = new URLSearchParams(window.location.search); // On récupère l'id de l'URL
 const photographerId = urlParams.get("id");
@@ -119,6 +119,12 @@ function createCardElement(media) {
 		dropDownFilters.setAttribute("aria-hidden", "true");
 	});
 
+	cardContainer.addEventListener("keydown", function(e) {
+		if(e.key === "Enter") {
+			openLightboxPopularity();
+		}
+	});
+
 	const likesContainer = document.createElement("div");
 	likesContainer.classList.add("likes-container");
 	const titleContainer = document.createElement("div");
@@ -156,9 +162,6 @@ function createCardElement(media) {
 	likesButton.setAttribute("role", "button");   
 	likesButton.setAttribute("tabindex", "0");
 	
-	
-
-
 	const heartIcone = document.createElement("i");
 	heartIcone.className ="fa-solid fa-heart";
 
