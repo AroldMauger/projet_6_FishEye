@@ -211,7 +211,6 @@ buttonHeader.addEventListener("focus", function() {
 });
 
 
-
 function changingCurrentFilter() {
 	let selectedFilter = allFilters.find(filter => filter.textContent === currentFilter.textContent);
 	selectedFilter.style.display = "none";

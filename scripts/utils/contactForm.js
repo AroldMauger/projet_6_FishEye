@@ -2,23 +2,48 @@ const firstName = document.querySelector("#first-name");
 const lastName = document.querySelector("#last-name");
 const email = document.querySelector("#email");
 const message = document.querySelector("#message");
-const form = document.querySelector("form")
+const form = document.querySelector("form");
 const buttonHeader = document.querySelector(".button-header");
 const closeButton = document.querySelector(".close-form-modal");
+const submitButton = document.querySelector(".contact_button");
+const modal = document.getElementById("contact_modal");
 
-buttonHeader.addEventListener("click", displayModal)
 function displayModal() {
-  const modal = document.getElementById("contact_modal");
-	modal.style.display = "block";
+  modal.style.display = "block";
   modal.setAttribute("aria-hidden", "false");
   closeButton.focus();
+
 }
 
-buttonHeader.addEventListener("keydown", function(event) {
-  if (event.key === "Enter") {
-    displayModal()
-}});
+buttonHeader.addEventListener("click", displayModal);
 
+buttonHeader.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    displayModal();
+  }
+});
+
+submitButton.addEventListener("keydown", function (e) {
+  if (e.key === "Tab" && !e.shiftKey) {
+    e.preventDefault(); 
+    closeButton.focus();
+  } if (e.key === "Tab" && e.shiftKey) {
+    e.preventDefault(); 
+    message.focus();
+  }
+});
+
+
+
+closeButton.addEventListener("keydown", function (event) {
+  if (event.key === "Tab" && event.shiftKey) {
+    event.preventDefault(); 
+    submitButton.focus();
+  } else if (event.key === "Enter") {
+    closeModal()
+  }
+  
+});
 
 
 
