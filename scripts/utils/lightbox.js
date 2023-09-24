@@ -89,7 +89,18 @@ function displayCurrentMedia() {
 }
 
 previousButton.addEventListener("click", previousMedia);
+lightBoxContainer.addEventListener("keydown", function(e){
+    if(e.key === "ArrowLeft"){
+        previousMedia();
+    }
+})
+
 nextButton.addEventListener("click", nextMedia);
+lightBoxContainer.addEventListener("keydown", function(e){
+    if(e.key === "ArrowRight"){
+        nextMedia();
+    }
+})
 
 // AFFICHER L'IMAGE PRÉCÉDENTE
 function previousMedia() {
