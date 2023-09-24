@@ -1,4 +1,4 @@
-const logo = document.querySelector(".logo");
+const logo = document.querySelector(".logo-container");
 const closeButtonInLightbox = document.querySelector(".button_close_lightbox");
 const lightBoxContainer = document.querySelector(".lightbox_container");
 const previousButton = document.querySelector(".button_previous_lightbox");
@@ -18,7 +18,7 @@ closeButtonInLightbox.addEventListener("click", closeLightbox);
 
 closeButtonInLightbox.addEventListener("keydown", function(e){
     if(e.key === "Enter") {
-        closeLightbox();
+        closeLightbox(e);
        
     } if (e.key === "Tab" && !e.shiftKey) {
         e.preventDefault(); 
@@ -37,10 +37,10 @@ previousButton.addEventListener("keydown", function(event){
 })
 
 function closeLightbox(e) {
+    e.preventDefault();
     lightBoxContainer.style.display = "none";
     lightBoxContainer.setAttribute("aria-hidden", "true");
     lightBoxContainer.removeAttribute('aria-modal');
-    e.preventDefault();
     logo.focus();
 }
 
@@ -89,14 +89,14 @@ function displayCurrentMedia() {
 }
 
 previousButton.addEventListener("click", previousMedia);
-lightBoxContainer.addEventListener("keydown", function(e){
+lightBoxContainer.addEventListener("keydown", function(e){   // Permet la navigation dans la lightbox avec la flèche de gauche
     if(e.key === "ArrowLeft"){
         previousMedia();
     }
 })
 
 nextButton.addEventListener("click", nextMedia);
-lightBoxContainer.addEventListener("keydown", function(e){
+lightBoxContainer.addEventListener("keydown", function(e){  // Permet la navigation dans la lightbox avec la flèche de droite
     if(e.key === "ArrowRight"){
         nextMedia();
     }
@@ -130,6 +130,7 @@ export function openLightboxPopularity() {
     lightBoxContainer.style.display = "flex";
     lightBoxContainer.setAttribute("aria-hidden", "false");
     lightBoxContainer.setAttribute("aria-modal", "true");
+    lightBoxContainer.setAttribute("aria-label", "image closeup view");
 
     const mediaId = mediaCard.id;
     currentIndex = filteredMediasByPopularity.findIndex(media => media.id == mediaId);
@@ -198,6 +199,7 @@ export function openLightboxDate() {
     function mediasInLightbox(mediaCard){
         lightBoxContainer.style.display = "flex";
         lightBoxContainer.setAttribute("aria-hidden", "false");
+        lightBoxContainer.setAttribute("aria-label", "image closeup view");
 
         const mediaId = mediaCard.id;
         currentIndex = filteredMediasByDate.findIndex(media => media.id == mediaId);
@@ -263,6 +265,7 @@ export function openLightboxName() {
     function mediasInLightbox(mediaCard) {
         lightBoxContainer.style.display = "flex";
         lightBoxContainer.setAttribute("aria-hidden", "false");
+        lightBoxContainer.setAttribute("aria-label", "image closeup view");
 
         const mediaId = mediaCard.id;
         currentIndex = filteredMediasByTitle.findIndex(media => media.id == mediaId);

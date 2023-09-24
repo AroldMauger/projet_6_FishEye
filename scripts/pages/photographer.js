@@ -11,7 +11,6 @@ const buttonSortByDate = document.querySelector("#sort-by-date");
 const buttonFilters = document.querySelector(".btn_drop");
 const nameInModalContainer = document.querySelector(".name-in-contactModal");
 const dropDownFilters = document.querySelector(".dropdown_content");
-const dropDown = document.querySelector(".btn_drop");
 const chevronUp = document.querySelector(".fa-chevron-down");
 const allFilters = Array.from(document.querySelectorAll(".dropdown_content li button"));
 const currentFilter = document.querySelector("#current_filter");
@@ -44,7 +43,8 @@ async function displayPhotographerInfo(id, photographersData) {
 
 		const photoPhotographer = document.createElement("img");
 		photoPhotographer.setAttribute("src", `assets/photographers/${photographer.portrait}`); // Assurez-vous que le chemin est correct
-		photoPhotographer.setAttribute("alt", "Photo de profil de " + photographer.name);
+		photoPhotographer.setAttribute("alt", "Profile picture of " + photographer.name);
+		photoPhotographer.setAttribute("aria-label", photographer.name);
 		photoPhotographer.classList.add("photo-in-header");
 
 		headerInfo.appendChild(namePhotographer);
@@ -57,7 +57,8 @@ async function displayPhotographerInfo(id, photographersData) {
 		nameInModalContainer.classList.add("nameInForm");
 		nameInModalContainer.appendChild(photographerNameInModal);
 
-        
+		const modal = document.getElementById("contact_modal");
+		modal.setAttribute("aria-label", "Contact me " + photographer.name);
 	}
 }
 // FONCTION QUI GENERE LES MEDIAS AU CHARGEMENT DE LA PAGE EN FONCTION DE L'ID DU PHOTOGRAPHE
@@ -137,14 +138,14 @@ function createCardElement(media) {
 			video.src = `assets/Photographers_ID_Photos/${media.video}`;
 			video.controls = false;
 			video.classList.add("photo-from-photographer");
-			video.setAttribute("alt", media.title);
+			video.setAttribute("alt", media.title + ", closeup view");
 			return video;
 		} else {
 			const image = document.createElement("img");
 			image.src = `assets/Photographers_ID_Photos/${media.image}`;
 			image.alt = media.title;
 			image.classList.add("photo-from-photographer");
-			image.setAttribute("alt", media.title);
+			image.setAttribute("alt", media.title + ", closeup view");
 			return image;
 		}
 	}
@@ -164,6 +165,8 @@ function createCardElement(media) {
 	
 	const heartIcone = document.createElement("i");
 	heartIcone.className ="fa-solid fa-heart";
+	heartIcone.setAttribute("aria-label", "likes");
+
 
 	const likesPhotographer = document.createElement("span");
 	likesPhotographer.textContent = media.likes;
@@ -189,11 +192,14 @@ function openFilters() {
 		dropDownFilters.style.display = "block";
 		chevronUp.classList.add("rotate");
 		dropDownFilters.setAttribute("aria-hidden", "false");
-
+		buttonFilters.setAttribute("aria-expanded", "true");
+		dropDownFilters.setAttribute("aria-activedescendant", "true");
 	} else {
 		dropDownFilters.style.display = "none";
 		chevronUp.classList.remove("rotate");
 		dropDownFilters.setAttribute("aria-hidden", "true");
+		buttonFilters.setAttribute("aria-expanded", "false");
+		dropDownFilters.removeAttribute("aria-activedescendant");
 	}
 }
 
@@ -201,7 +207,7 @@ function openFilters() {
 
 /* On ferme les filtres si on clique en dehors des filtres */
 window.addEventListener("click", function(e) {
-	if (e.target !== dropDown && e.target !== dropDownFilters && e.target !== currentFilter && e.target !== chevronUp) {
+	if (e.target !== buttonFilters && e.target !== dropDownFilters && e.target !== currentFilter && e.target !== chevronUp) {
 		dropDownFilters.style.display = "none";
 		chevronUp.classList.remove("rotate");
 		dropDownFilters.setAttribute("aria-hidden", "true");
@@ -220,13 +226,19 @@ buttonHeader.addEventListener("focus", function() {
 function changingCurrentFilter() {
 	let selectedFilter = allFilters.find(filter => filter.textContent === currentFilter.textContent);
 	selectedFilter.style.display = "none";
-  
 	allFilters.forEach(filter => {
 		filter.addEventListener("click", function () {
 			currentFilter.textContent = filter.textContent;
+
 			if (selectedFilter) selectedFilter.style.display = "block";
 			selectedFilter = filter;
 			selectedFilter.style.display = "none";
+		});
+		filter.addEventListener("focus", function(){
+			filter.setAttribute("aria-activedescendant", "true");
+		});
+		selectedFilter.addEventListener("focus", function(){
+			filter.setAttribute("aria-selected", "true");
 		});
 	});
 	

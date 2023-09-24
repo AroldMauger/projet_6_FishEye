@@ -10,15 +10,15 @@
         clickableCard.classList.add("clickableCard")
         clickableCard.setAttribute("href", "photographer.html?id="+ id)
         clickableCard.setAttribute("id", id)
+        clickableCard.setAttribute("aria-label", "Go to " + name + " profile")
 
         const article = document.createElement( 'article' );
-        article.setAttribute("aria-label", "Description of the photographer " + name)
         
 
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
         img.setAttribute("alt", "Photo de profil de " + name)
-        img.setAttribute("aria-label", "Picture of the photographer")
+        img.setAttribute("aria-label", "Picture of " + name)
 
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;  
