@@ -1,4 +1,4 @@
-
+const logo = document.querySelector(".logo");
 const closeButtonInLightbox = document.querySelector(".button_close_lightbox");
 const lightBoxContainer = document.querySelector(".lightbox_container");
 const previousButton = document.querySelector(".button_previous_lightbox");
@@ -19,13 +19,29 @@ closeButtonInLightbox.addEventListener("click", closeLightbox);
 closeButtonInLightbox.addEventListener("keydown", function(e){
     if(e.key === "Enter") {
         closeLightbox();
+       
+    } if (e.key === "Tab" && !e.shiftKey) {
+        e.preventDefault(); 
+      previousButton.focus();
+    } if (e.key === "Tab" && e.shiftKey) {
+        e.preventDefault(); 
+        nextButton.focus();
     }
 })
 
-function closeLightbox() {
+previousButton.addEventListener("keydown", function(event){
+    if(event.key === "Tab" && event.shiftKey){
+        event.preventDefault(); 
+        closeButtonInLightbox.focus();
+    }
+})
+
+function closeLightbox(e) {
     lightBoxContainer.style.display = "none";
     lightBoxContainer.setAttribute("aria-hidden", "true");
     lightBoxContainer.removeAttribute('aria-modal');
+    e.preventDefault();
+    logo.focus();
 }
 
 // On ferme la lightbox quand on appuie sur la touche Escape
@@ -34,7 +50,6 @@ window.addEventListener('keydown', function(e){
         closeLightbox(e)
     }
 }) 
-
 
 
 // AFFICHER L'IMAGE ACTUELLE
@@ -52,6 +67,7 @@ function displayCurrentMedia() {
 			video.setAttribute("alt", currentMedia.title);
             video.controls = true;
             video.classList.add("lightbox_media_picture");
+            video.setAttribute("tabindex", "1");
             return video;
         } else {
             const picture = document.createElement("img");
@@ -119,6 +135,7 @@ export function openLightboxPopularity() {
         video.controls = true;
         video.classList.add("lightbox_media_picture");
         video.setAttribute("alt", currentMedia.title);
+        video.setAttribute("tabindex", "1");
         return video;
       } else {
         const picture = document.createElement("img");
@@ -130,7 +147,6 @@ export function openLightboxPopularity() {
     }
 
     const mediaElementInLightbox = createMediaElementLightbox(currentMedia);
-
     const titleMediaInLightbox = document.createElement("p");
     titleMediaInLightbox.textContent = currentMedia.title;
 
@@ -151,15 +167,13 @@ export function openLightboxPopularity() {
       if (event.key === "Enter") {
         mediasInLightbox(mediaCard);
         event.preventDefault()
-        closeButtonInLightbox.focus();   // ICI CA MARCHE
-
+        closeButtonInLightbox.focus();
       }
     }
     );
   });
 
 }
-
 
 
 // LIGHTBOX DATE
@@ -189,6 +203,7 @@ export function openLightboxDate() {
                 video.controls = true;
                 video.classList.add("lightbox_media_picture");
                 video.setAttribute("alt", currentMedia.title);
+                video.setAttribute("tabindex", "1");
                 return video;
             } else {
                 const picture = document.createElement("img");
@@ -217,6 +232,8 @@ export function openLightboxDate() {
         mediaCard.addEventListener('keydown', function (event) {
         if (event.key === "Enter") {
         mediasInLightbox(mediaCard);
+        event.preventDefault()
+        closeButtonInLightbox.focus();
         }
         });
     })
@@ -250,6 +267,7 @@ export function openLightboxName() {
                 video.controls = true;
                 video.classList.add("lightbox_media_picture");
                 video.setAttribute("alt", currentMedia.title);
+                video.setAttribute("tabindex", "1");
                 return video;
             } else {
                 const picture = document.createElement("img");
@@ -279,6 +297,8 @@ export function openLightboxName() {
         mediaCard.addEventListener('keydown', function (event) {
         if (event.key === "Enter") {
             mediasInLightbox(mediaCard);
+            event.preventDefault()
+            closeButtonInLightbox.focus();
         }
         });
     });

@@ -12,7 +12,7 @@
   <body>
     <header>
     <a href="/index.html">
-      <img src="assets/images/logo.png" class="logo" alt="Fisheye logo" aria-label="Return to home page"/>
+      <img src="assets/images/logo.png" class="logo" tabindex="0" alt="Fisheye logo" aria-label="Return to home page"/>
     </a>
     </header>  
     <section class="info-photographer">
@@ -86,15 +86,17 @@
     <div class="lightbox_container" style="display: none;" aria-hidden="true" role="dialog">
     
       <div class="lightbox">
+        <div class="left-side-lightbox">
           <button class="button_previous_lightbox button_lightbox" tabindex="1">
             <i class="fa-solid fa-chevron-left"></i>         
            </button>
+        </div>
           <figure class="lightbox_media" role="media"></figure>
           <div class="right-side-lightbox">
             <button class="button_next_lightbox button_lightbox" tabindex="1">
               <i class="fa-solid fa-chevron-right"></i>          
             </button>
-            <button class="button_close_lightbox" tabindex="2">          
+            <button class="button_close_lightbox" tabindex="1">          
               <img class="icon-close-lightbox" src="assets/icons/close-red.png"/>
             </button>
           </div>

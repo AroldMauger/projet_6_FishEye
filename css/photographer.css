@@ -368,6 +368,11 @@ form input {
     max-height: 1300px;
 }
 
+.left-side-lightbox {
+    display: flex;
+    align-items: center;
+}
+
 .lightbox_media {         /* LA BALISE FIGURE PARENT DE IMG */
     display: flex;
     flex-direction: column;
@@ -393,11 +398,24 @@ form input {
     border: none;
 }
 
+.fa-chevron-right {
+    padding-top: 20px;
+
+}
+
 .button_lightbox i {
     width: 96px;
     height: 96px;
     font-size: 50px;
     color: #901C1C;
+}
+
+.button_previous_lightbox {
+    text-align: center;
+    width: 96px;
+    height: 96px;
+    padding-top: 20px;
+
 }
 
 .button_close_lightbox {
