@@ -37,8 +37,8 @@ async function displayPhotographerInfo(id, photographersData) {
 		window.location.href = "index.html";
 	} else {
 		// On affiche les informations du photographe
-		const namePhotographer = createTextualElements("p", photographer.name, "name-in-header");
-		const locationPhotographer = createTextualElements("p", `${photographer.city}, ${photographer.country}`, "location-in-header");
+		const namePhotographer = createTextualElements("h1", photographer.name, "name-in-header");
+		const locationPhotographer = createTextualElements("h2", `${photographer.city}, ${photographer.country}`, "location-in-header");
 		const taglinePhotographer = createTextualElements("p", photographer.tagline, "tagline-in-header");
 
 		const photoPhotographer = document.createElement("img");
@@ -130,31 +130,16 @@ function createCardElement(media) {
 	likesContainer.classList.add("likes-container");
 	const titleContainer = document.createElement("div");
 	titleContainer.classList.add("title-container");
+	
+	const image = document.createElement("img");
+	image.src = `assets/Photographers_ID_Photos/${media.image}`;
+	image.alt = media.title;
+	image.classList.add("photo-from-photographer");
+	image.setAttribute("alt", media.title + ", closeup view");
     
-	function createMediaElement(media) {
-		
-		if (media.video) {
-			const video = document.createElement("video");
-			video.src = `assets/Photographers_ID_Photos/${media.video}`;
-			video.controls = false;
-			video.classList.add("photo-from-photographer");
-			video.setAttribute("alt", media.title + ", closeup view");
-			return video;
-		} else {
-			const image = document.createElement("img");
-			image.src = `assets/Photographers_ID_Photos/${media.image}`;
-			image.alt = media.title;
-			image.classList.add("photo-from-photographer");
-			image.setAttribute("alt", media.title + ", closeup view");
-			return image;
-		}
-	}
-
-	const mediaFromPhotographer = createMediaElement(media);
-
-    
-	const titleMedia = document.createElement("p");
+	const titleMedia = document.createElement("h3");
 	titleMedia.textContent = media.title;
+	titleMedia.classList.add("title-media");
     
 	const likesButton = document.createElement("button");
 	likesButton.setAttribute("id", media.id); 
@@ -181,7 +166,7 @@ function createCardElement(media) {
 	likesButton.appendChild(heartIcone);
 	likesContainer.appendChild(likesButton);
 	divCardContainer.appendChild(titleContainer);
-	cardContainer.appendChild(mediaFromPhotographer);
+	cardContainer.appendChild(image);
 	
 
 }

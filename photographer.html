@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -59,25 +61,25 @@
     
     <!-- FORMULAIRE MODAL-->
 
-    <div id="contact_modal" aria-hidden="true" role="dialog" aria-modal="true" aria-describedby="Contact form" >
+    <div id="contact_modal" aria-hidden="true" role="dialog" aria-modal="true" >
 			<div class="modal" role="document">
 				<header class="header-in-contactModal">
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" class="close-form-modal" onclick="closeModal()" tabindex="1" aria-label="Close Contact form"/>
+          <img src="assets/icons/close.svg" alt="Close icon in form modal" class="close-form-modal" onclick="closeModal()" tabindex="0" aria-label="Close Contact form"/>
         </header>
         <div class="name-in-contactModal"></div>
 				<form>
 					<div class="fields-in-form">
 						<label id="firstname-label" for="first-name">Prénom</label>
-						<input id="first-name" type="text" aria-labelledby="firstname-label" tabindex="1" required>
+						<input id="first-name" type="text" aria-labelledby="firstname-label" tabindex="0" required>
             <label id="lastname-label" for="last-name">Nom</label>
-						<input id="last-name" type="text" aria-labelledby="lastname-label" tabindex="1" required>
+						<input id="last-name" type="text" aria-labelledby="lastname-label" tabindex="0" required>
             <label id="email-label" for="email">Email</label>
-						<input id="email" type="text" pattern="[a-z0-9.-_]+@[a-z0-9.-_]+\.[a-z]{2,4}" aria-labelledby="email-label" tabindex="1" required>
+						<input id="email" type="text" pattern="[a-z0-9.-_]+@[a-z0-9.-_]+\.[a-z]{2,4}" aria-labelledby="email-label" tabindex="0" required>
             <label id="message-label" for="message">Votre message</label>
-						<input id="message" type="text" aria-labelledby="message-label" tabindex="1" required>
+						<input id="message" type="text" aria-labelledby="message-label" tabindex="0" required>
 					</div>
-          <button class="contact_button" type="submit" tabindex="1" aria-label="Send">Envoyer</button>
+          <button class="contact_button" type="submit" tabindex="0" aria-label="Send">Envoyer</button>
 				</form>
 			</div>
 		</div>
@@ -87,17 +89,17 @@
     
       <div class="lightbox">
         <div class="left-side-lightbox">
-          <button class="button_previous_lightbox button_lightbox" aria-label="Previous image" tabindex="1">
-            <i class="fa-solid fa-chevron-left"></i>         
-           </button>
+          <button class="button_previous_lightbox button_lightbox" aria-label="Previous image" tabindex="0">
+            <span class="icon fa-solid fa-chevron-left"></span>
+          </button>
         </div>
           <figure class="lightbox_media" role="media"></figure>
           <div class="right-side-lightbox">
-            <button class="button_next_lightbox button_lightbox" aria-label="Next image" tabindex="1">
-              <i class="fa-solid fa-chevron-right"></i>          
+            <button class="button_next_lightbox button_lightbox" aria-label="Next image" tabindex="0">
+              <span class="icon fa-solid fa-chevron-right"></span>
             </button>
-            <button class="button_close_lightbox" aria-label="Close dialog" tabindex="1">          
-              <img class="icon-close-lightbox" src="assets/icons/close-red.png"/>
+            <button class="button_close_lightbox" aria-label="Close dialog" tabindex="0">          
+              <img class="icon-close-lightbox" alt="Close icon in lightbox" src="assets/icons/close-red.png"/>
             </button>
           </div>
          

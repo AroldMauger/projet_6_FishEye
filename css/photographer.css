@@ -185,6 +185,19 @@ form input {
   height: 300px; 
 }
 
+.video-from-photographer {
+    object-fit: cover;
+    width: 350px;
+    height: 300px; 
+  }
+
+.title-media {
+color: #901C1C;
+font-size: 24px;
+font-weight: 400;
+margin-top: 10px;
+}
+
 .div-card-container {
     display: flex;
     flex-direction: column;
@@ -201,7 +214,6 @@ form input {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
-    align-items: center;
     color: #901C1C;
     font-size: 24px;
 }
@@ -218,7 +230,7 @@ form input {
 
 .likes-container {
     display: flex;
-    align-items: center;
+    margin-top: 10px;
 }
 
 .main_photographer_filter {
@@ -381,9 +393,10 @@ form input {
     height: 100%;
 }
 
-.lightbox_media p {
+.lightbox_media h3 {
    color:#901C1C;
    font-size: 24px;
+   font-weight: 400;
 }
 
 .lightbox_media_picture {  /* LA BALISE IMG */
@@ -403,11 +416,12 @@ form input {
 
 }
 
-.button_lightbox i {
+.button_lightbox span {
     width: 96px;
     height: 96px;
     font-size: 50px;
     color: #901C1C;
+    cursor: pointer;
 }
 
 .button_previous_lightbox {
@@ -435,9 +449,11 @@ form input {
 }
 
 .likes-button {
+    display: flex;
     background-color: white;
     border: none;
     cursor: pointer;
+    margin-top: 5px;
 }
 
 .right-side-lightbox {

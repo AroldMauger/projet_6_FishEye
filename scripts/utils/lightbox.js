@@ -62,18 +62,24 @@ function displayCurrentMedia() {
 
     function createMediaElementLightbox(currentMedia) {
         if(currentMedia.video) {
+
             const video = document.createElement("video");
-            video.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.video}`);
-			video.setAttribute("alt", currentMedia.title);
-            video.controls = true;
-            video.classList.add("lightbox_media_picture");
-            video.setAttribute("tabindex", "1");
-            return video;
+			video.classList.add("lightbox_media_picture");
+			video.setAttribute("controls", "true");
+            video.setAttribute("tabindex", "0");
+
+			const sourceVideo = document.createElement("source");
+			sourceVideo.src = `assets/Photographers_ID_Photos/${currentMedia.video}`;
+			sourceVideo.setAttribute("type", "video/mp4");
+
+			video.appendChild(sourceVideo);
+			return video;
+
         } else {
             const picture = document.createElement("img");
             picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
             picture.classList.add("lightbox_media_picture");
-            picture.setAttribute("alt", currentMedia.title);
+            picture.setAttribute("alt", currentMedia.title + ", closeup view");
 
             return picture;
         }
@@ -81,8 +87,9 @@ function displayCurrentMedia() {
     const mediaElementInLightbox = createMediaElementLightbox(currentMedia)
 
 
-    const titleMediaInLightbox = document.createElement("p");
+    const titleMediaInLightbox = document.createElement("h3");
     titleMediaInLightbox.textContent = currentMedia.title;
+    titleMediaInLightbox.classList.add("title-in-lightbox");
 
     lightboxMedia.appendChild(mediaElementInLightbox);
     lightboxMedia.appendChild(titleMediaInLightbox);
@@ -139,28 +146,35 @@ export function openLightboxPopularity() {
 
     const lightboxMedia = document.querySelector(".lightbox_media");
     lightboxMedia.innerHTML = "";
+    closeButtonInLightbox.focus();
 
     function createMediaElementLightbox(currentMedia) {
       if (currentMedia.video) {
+       
         const video = document.createElement("video");
-        video.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.video}`);
-        video.controls = true;
         video.classList.add("lightbox_media_picture");
-        video.setAttribute("alt", currentMedia.title);
-        video.setAttribute("tabindex", "1");
+        video.setAttribute("controls", "true");
+        video.setAttribute("tabindex", "0");
+
+        const sourceVideo = document.createElement("source");
+        sourceVideo.src = `assets/Photographers_ID_Photos/${currentMedia.video}`;
+        sourceVideo.setAttribute("type", "video/mp4");
+
+        video.appendChild(sourceVideo);
         return video;
       } else {
         const picture = document.createElement("img");
         picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
         picture.classList.add("lightbox_media_picture");
-        picture.setAttribute("alt", currentMedia.title);
+        picture.setAttribute("alt", currentMedia.title + ", closeup view");
         return picture;
       }
     }
 
     const mediaElementInLightbox = createMediaElementLightbox(currentMedia);
-    const titleMediaInLightbox = document.createElement("p");
+    const titleMediaInLightbox = document.createElement("h3");
     titleMediaInLightbox.textContent = currentMedia.title;
+    titleMediaInLightbox.classList.add("title-in-lightbox");
 
     lightboxMedia.appendChild(mediaElementInLightbox);
     lightboxMedia.appendChild(titleMediaInLightbox);
@@ -178,7 +192,7 @@ export function openLightboxPopularity() {
     mediaCard.addEventListener('keydown', function (event) {
       if (event.key === "Enter") {
         mediasInLightbox(mediaCard);
-        event.preventDefault()
+        event.preventDefault();
         closeButtonInLightbox.focus();
       }
     }
@@ -211,27 +225,33 @@ export function openLightboxDate() {
 
         function createMediaElementLightbox(currentMedia) {
             if(currentMedia.video) {
-                const video = document.createElement("video");
-                video.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.video}`);
-                video.controls = true;
-                video.classList.add("lightbox_media_picture");
-                video.setAttribute("alt", currentMedia.title);
-                video.setAttribute("tabindex", "1");
-                return video;
+              
+            const video = document.createElement("video");
+			video.classList.add("lightbox_media_picture");
+			video.setAttribute("controls", "true");
+            video.setAttribute("tabindex", "0");
+
+			const sourceVideo = document.createElement("source");
+			sourceVideo.src = `assets/Photographers_ID_Photos/${currentMedia.video}`;
+			sourceVideo.setAttribute("type", "video/mp4");
+
+			video.appendChild(sourceVideo);
+			return video;
             } else {
                 const picture = document.createElement("img");
                 picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
                 picture.classList.add("lightbox_media_picture");
-                picture.setAttribute("alt", currentMedia.title);
+                picture.setAttribute("alt", currentMedia.title + ", closeup view");
                 return picture;
             }
         }
         const mediaElementInLightbox = createMediaElementLightbox(currentMedia)
     
     
-        const titleMediaInLightbox = document.createElement("p");
+        const titleMediaInLightbox = document.createElement("h3");
         titleMediaInLightbox.textContent = currentMedia.title;
-    
+        titleMediaInLightbox.classList.add("title-in-lightbox");
+
         lightboxMedia.appendChild(mediaElementInLightbox);
         lightboxMedia.appendChild(titleMediaInLightbox);
     }
@@ -276,27 +296,34 @@ export function openLightboxName() {
     
         function createMediaElementLightbox(currentMedia) {
             if(currentMedia.video) {
-                const video = document.createElement("video");
-                video.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.video}`);
-                video.controls = true;
-                video.classList.add("lightbox_media_picture");
-                video.setAttribute("alt", currentMedia.title);
-                video.setAttribute("tabindex", "1");
-                return video;
+               
+            const video = document.createElement("video");
+			video.classList.add("lightbox_media_picture");
+			video.setAttribute("controls", "true");
+            video.setAttribute("tabindex", "0");
+            video.setAttribute("aria-label", currentMedia.title + ", closeup view");
+
+			const sourceVideo = document.createElement("source");
+			sourceVideo.src = `assets/Photographers_ID_Photos/${currentMedia.video}`;
+			sourceVideo.setAttribute("type", "video/mp4");
+
+			video.appendChild(sourceVideo);
+			return video;
             } else {
                 const picture = document.createElement("img");
                 picture.setAttribute("src", `assets/Photographers_ID_Photos/${currentMedia.image}`);
                 picture.classList.add("lightbox_media_picture");
-                picture.setAttribute("alt", currentMedia.title);
+                picture.setAttribute("alt", currentMedia.title + ", closeup view");
                 return picture;
             }
         }
         const mediaElementInLightbox = createMediaElementLightbox(currentMedia)
     
     
-        const titleMediaInLightbox = document.createElement("p");
+        const titleMediaInLightbox = document.createElement("h3");
         titleMediaInLightbox.textContent = currentMedia.title;
-    
+        titleMediaInLightbox.classList.add("title-in-lightbox");
+
         lightboxMedia.appendChild(mediaElementInLightbox);
         lightboxMedia.appendChild(titleMediaInLightbox);
     }
