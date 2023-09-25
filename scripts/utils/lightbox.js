@@ -159,9 +159,9 @@ lightBoxContainer.addEventListener("keydown", function(e){   // Permet la naviga
     }
 })
 function previousMedia() {
-    currentIndex--;
-    if (currentIndex < 0) {
-        currentIndex = filteredMedias.length - 1;
+    currentIndex--;                                 // on revient à l'index précédent
+    if (currentIndex < 0) {                         // si l'index du media devient négatif et sort du tableau des index des medias
+        currentIndex = filteredMedias.length - 1;   // Alors on revient au dernier index du tableau des index des medias
     }
     displayCurrentMedia();
 }
@@ -174,9 +174,9 @@ lightBoxContainer.addEventListener("keydown", function(e){  // Permet la navigat
     }
 })
 function nextMedia() {
-    currentIndex++;
-    if (currentIndex >= filteredMedias.length) {
-        currentIndex = 0;
+    currentIndex++;                                 // on passe à l'index suivant
+    if (currentIndex >= filteredMedias.length) {   // si l'index du media dépasse le tableau des index des medias
+        currentIndex = 0;                          // alors l'index prend une valeur de 0. Autrement dit, on revient au début du tableau
     }
     displayCurrentMedia();
 }

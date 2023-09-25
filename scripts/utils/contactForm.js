@@ -8,21 +8,42 @@ const closeButton = document.querySelector(".close-form-modal");
 const submitButton = document.querySelector(".contact_button");
 const modal = document.getElementById("contact_modal");
 
+// --- OUVRIR LE FORMULAIRE ---
 function displayModal() {
   modal.style.display = "block";
   modal.setAttribute("aria-hidden", "false");
   closeButton.focus();
-
 }
 
 buttonHeader.addEventListener("click", displayModal);
-
 buttonHeader.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     displayModal();
   }
 });
+// --- FERMER LE FORMULAIRE ---
+function closeModal() {
+  const modal = document.getElementById("contact_modal");
+  modal.style.display = "none";
+  modal.setAttribute("aria-hidden", "true");
+  modal.removeAttribute('aria-modal');
+}
+// On ferme la lightbox quand on appuie sur la touche Escape
+window.addEventListener('keydown', function(e){ 
+if (e.key === "Escape" || e.key === "Esc") {
+  closeModal(e)
+}
+}) 
+closeButton.addEventListener("keydown", function (event) {
+  if (event.key === "Tab" && event.shiftKey) {
+    event.preventDefault(); 
+    submitButton.focus();
+  } else if (event.key === "Enter") {
+    closeModal()
+  }
+});
 
+// --- GESTION DES FOCUS QUAND ON NAVIGUE AVEC LE CLAVIER ---
 submitButton.addEventListener("keydown", function (e) {
   if (e.key === "Tab" && !e.shiftKey) {
     e.preventDefault(); 
@@ -33,33 +54,7 @@ submitButton.addEventListener("keydown", function (e) {
   }
 });
 
-
-
-closeButton.addEventListener("keydown", function (event) {
-  if (event.key === "Tab" && event.shiftKey) {
-    event.preventDefault(); 
-    submitButton.focus();
-  } else if (event.key === "Enter") {
-    closeModal()
-  }
-});
-
-function closeModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.style.display = "none";
-    modal.setAttribute("aria-hidden", "true");
-    modal.removeAttribute('aria-modal');
-
-}
-
-// On ferme la lightbox quand on appuie sur la touche Escape
-window.addEventListener('keydown', function(e){ 
-  if (e.key === "Escape" || e.key === "Esc") {
-    closeModal(e)
-  }
-}) 
-
-
+// FONCTION QUI VERIFIE LA VALIDITÉ DU FORMULAIRE
 form.addEventListener("submit", validate);
 
 function validate(event) {
@@ -68,7 +63,6 @@ function validate(event) {
     const lastNameValue = lastName.value;
     const emailValue = email.value;
     const messageValue = message.value;
-
     console.log("Prénom:", firstNameValue);
     console.log("Nom de famille:", lastNameValue);
     console.log("Email:", emailValue);
@@ -79,7 +73,6 @@ function validate(event) {
     const emailIsValid = email.checkValidity();
   
     if (firstNameIsValid && lastNameIsValid && emailIsValid ) {
-  
     closeModal()  
     } else {
       throw new Error("Formulaire non valide");
