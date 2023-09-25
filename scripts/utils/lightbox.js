@@ -1,3 +1,5 @@
+import {fetchData} from"../pages/photographer.js";
+
 const logo = document.querySelector(".logo-container");
 const closeButtonInLightbox = document.querySelector(".button_close_lightbox");
 const lightBoxContainer = document.querySelector(".lightbox_container");
@@ -6,11 +8,9 @@ const nextButton = document.querySelector(".button_next_lightbox");
 const urlParams = new URLSearchParams(window.location.search); // On récupère l'id de l'URL
 const photographerId = parseInt(urlParams.get('id')); // Convertir en nombre
 let currentIndex = 0;
-const response = await fetch('/data/photographers.json');
-const photographersData = await response.json();
+const photographersData = await fetchData();
 const medias = photographersData.media
 const filteredMedias = medias.filter(media => media.photographerId === photographerId); // Filtrer medias qui correspondent à l'id du photographe selectionné
-
 
 // FONCTION QUI PERMET L'AFFICHAGE DE L'IMAGE/VIDEO ET DE SON TITRE
 function displayCurrentMedia() {
