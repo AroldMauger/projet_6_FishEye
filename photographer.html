@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/photographer.css" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <title>Fisheye - photographe </title>
@@ -14,16 +13,16 @@
   <body>
     <header>
     <a href="/index.html" tabindex="0" class="logo-container" aria-label="Fisheye Home Page">
-      <img src="assets/images/logo.png" class="logo" alt="Fisheye logo" aria-label="Return to home page"/>
+      <img src="assets/images/logo.png" class="logo" alt="Fisheye logo" aria-label="Return to home page">
     </a>
     </header>  
-    <section class="info-photographer">
+    <div class="info-photographer">
         <div class="photograph-header">
           <div class="header-info">
           </div>
-          <button class="button-header" role="button" aria-label="Contact Me">Contactez-moi</button>
+          <button class="button-header" aria-label="Contact Me">Contactez-moi</button>
         </div>
-      </section>
+      </div>
     <main id="main">
      
         <section class="main_photographer">
@@ -31,19 +30,19 @@
                 <h2>Trier par</h2>
                 <div class="filters" >
                     <div class="dropdown">
-                        <button class="btn_drop " type="button" role="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by">
+                        <button class="btn_drop " type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by">
                             <span id="current_filter">Popularité</span>
                             <span class="fa-solid fa-chevron-down" aria-hidden="true"></span>
                         </button>
-                        <ul class="dropdown_content" aria-hidden="true" style="display:none">
+                        <ul class="dropdown_content" aria-hidden="true" role="listbox" style="display:none">
                             <li class="option-filter" role="option">
-                              <button id="sort-by-popularity" type="button" role="listbox" aria-label="Sort by popularity">Popularité</button>
+                              <button id="sort-by-popularity" type="button" aria-label="Sort by popularity">Popularité</button>
                             </li>
                             <li class="option-filter" role="option">
-                                <button id="sort-by-date" type="button" role="listbox" aria-label="Sort by date">Date</button>
+                                <button id="sort-by-date" type="button" aria-label="Sort by date">Date</button>
                             </li>
                             <li class="option-filter" role="option">
-                                <button id="sort-by-title" type="button" role="listbox" aria-label="Sort by title">Titre</button>
+                                <button id="sort-by-title" type="button" aria-label="Sort by title">Titre</button>
                             </li>
                            
                         </ul>
@@ -65,7 +64,7 @@
 			<div class="modal" role="document">
 				<header class="header-in-contactModal">
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" alt="Close icon in form modal" class="close-form-modal" onclick="closeModal()" tabindex="0" aria-label="Close Contact form"/>
+          <img src="assets/icons/close.svg" alt="Close icon in form modal" class="close-form-modal" onclick="closeModal()" tabindex="0" aria-label="Close Contact form">
         </header>
         <div class="name-in-contactModal"></div>
 				<form>
@@ -93,13 +92,13 @@
             <span class="icon fa-solid fa-chevron-left"></span>
           </button>
         </div>
-          <figure class="lightbox_media" role="media"></figure>
+          <figure class="lightbox_media"></figure>
           <div class="right-side-lightbox">
             <button class="button_next_lightbox button_lightbox" aria-label="Next image" tabindex="0">
               <span class="icon fa-solid fa-chevron-right"></span>
             </button>
             <button class="button_close_lightbox" aria-label="Close dialog" tabindex="0">          
-              <img class="icon-close-lightbox" alt="Close icon in lightbox" src="assets/icons/close-red.png"/>
+              <img class="icon-close-lightbox" alt="Close icon in lightbox" src="assets/icons/close-red.png">
             </button>
           </div>
          
