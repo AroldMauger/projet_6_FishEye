@@ -6,7 +6,7 @@ const buttonSortByTitle = document.querySelector("#sort-by-title");
 const buttonSortByDate = document.querySelector("#sort-by-date");
 
 //GESTION DES FILTRES
-const urlParams = new URLSearchParams(window.location.search); // On récupère l'id de l'URL
+const urlParams = new URLSearchParams(window.location.search); 
 const photographerId = urlParams.get('id');
 const currentFilter = document.querySelector("#current_filter");
 const allFilters = Array.from(document.querySelectorAll(".dropdown_content li button"));
@@ -20,7 +20,7 @@ const buttonFilters = document.querySelector(".btn_drop");
 export function openFilters() {
 	if(dropDownFilters.style.display === "none") {
 		dropDownFilters.style.display = "block";
-		chevronUp.classList.add("rotate");
+		chevronUp.classList.add("rotate");                        // la class "rotate" permet de faire "transform: rotate(180deg);" sur le chevron
 		dropDownFilters.setAttribute("aria-hidden", "false");
 		buttonFilters.setAttribute("aria-expanded", "true");
 		dropDownFilters.setAttribute("aria-activedescendant", "true");
@@ -43,7 +43,7 @@ window.addEventListener("click", function(e) {
 	}
 });
 
-/* On ferme les filtres quand le bouton "Contactez-moi" est focuse */
+/* On ferme les filtres quand le bouton "Contactez-moi" est focus */
 
 buttonHeader.addEventListener("focus", function() {   
 	dropDownFilters.style.display = "none";
@@ -51,14 +51,20 @@ buttonHeader.addEventListener("focus", function() {
 	dropDownFilters.setAttribute("aria-hidden", "true");
 });
 
-
+// FONCTION QUI GERE LE CHANGEMENT DE FILTRE
 export function changingCurrentFilter() {
+  // On cherche le filtre dont le nom correspond avec le filtre actuellement selectionné
 	let selectedFilter = allFilters.find(filter => filter.textContent === currentFilter.textContent);
+  // Ce filtre ne doit pas être visible
 	selectedFilter.style.display = "none";
+
 	allFilters.forEach(filter => {
 		filter.addEventListener("click", function () {
+
+      // Quand on clique sur un filtre, le nom du filtre actuel change et prend le nom du filtre cliqué
 			currentFilter.textContent = filter.textContent;
 
+      // Ce filtre cliqué doit passer en display:none pour être masqué
 			if (selectedFilter) selectedFilter.style.display = "block";
 			selectedFilter = filter;
 			selectedFilter.style.display = "none";
@@ -73,6 +79,7 @@ export function changingCurrentFilter() {
 	
 }
 
+// L'EVENEMENT QUI APPELLE LES FONCTIONS D'OUVERTURE ET DE CHANGEMENT DE FILTRE
 buttonFilters.addEventListener("click", clickOnFilterButton);
 
 function clickOnFilterButton () {
@@ -80,30 +87,30 @@ function clickOnFilterButton () {
 	changingCurrentFilter();
 }
 
+// LE TRIE PAR POPULARITÉ
 export async function sortByPopularity() {
 	const photographersData = await fetchData();
 	const medias = photographersData.media;
-	const mediasByPopularity = [...medias].sort((a, b) => a.likes - b.likes);
+	const mediasByPopularity = [...medias].sort((a, b) => a.likes - b.likes);   // On trie par ordre croissant en fonction des likes
   
-	mediasContainer.innerHTML = "";
+	mediasContainer.innerHTML = "";                                             // On efface tous les medias avec innerHTML
 	mediasByPopularity.forEach(media => {
-		if (media.photographerId === parseInt(photographerId)) {
-			createCardElement(media);
+		if (media.photographerId === parseInt(photographerId)) {              // On affiche les medias triés par likes si leur id = l'id du photographe
+			createCardElement(media);                                           // Appelle de la fonction qui génère les medias
 		}
 	});
 	openLightboxPopularity();
 	incrementLikes(photographerId, photographersData);
-
 }
   
 export async function sortByTitle() {
 	const photographersData = await fetchData();
 	const medias = photographersData.media;
-	const mediasByTitle = [...medias].sort((a, b) => a.title.localeCompare(b.title));
+	const mediasByTitle = [...medias].sort((a, b) => a.title.localeCompare(b.title)); // On trie par ordre alphabétique à partir d'un tableau des medias
   
-	mediasContainer.innerHTML = "";
+	mediasContainer.innerHTML = "";                                            // On efface tous les medias avec innerHTML
 	mediasByTitle.forEach(media => {
-		if (media.photographerId === parseInt(photographerId)) {
+		if (media.photographerId === parseInt(photographerId)) {                 // On affiche les medias triés par likes si leur id = l'id du photographe
 			createCardElement(media);
 		}
 	});
@@ -115,11 +122,11 @@ export async function sortByTitle() {
 export async function sortByDate() {
 	const photographersData = await fetchData();
 	const medias = photographersData.media;
-	const mediasByDate = [...medias].sort((a, b) => new Date(b.date) - new Date(a.date));
+	const mediasByDate = [...medias].sort((a, b) => new Date(b.date) - new Date(a.date)); // On trie par date à partir d'un tableau des medias
   
-	mediasContainer.innerHTML = "";
+	mediasContainer.innerHTML = "";                                            // On efface tous les medias avec innerHTML
 	mediasByDate.forEach(media => {
-		if (media.photographerId === parseInt(photographerId)) {
+		if (media.photographerId === parseInt(photographerId)) {                // On affiche les medias triés par likes si leur id = l'id du photographe
 			createCardElement(media);
         
 		}
@@ -128,7 +135,23 @@ export async function sortByDate() {
 	incrementLikes(photographerId, photographersData);
 }
 
-
+// LES EVENEMENTS QUI DÉCLENCHENT LES FONCTIONS DE TRIE
 buttonSortByPopularity.addEventListener("click", sortByPopularity);
 buttonSortByTitle.addEventListener("click", sortByTitle);
 buttonSortByDate.addEventListener("click", sortByDate);
+
+buttonSortByPopularity.addEventListener("keydown", function(e){
+	if(e.key === "Enter") {
+		sortByPopularity();
+	}
+});
+buttonSortByTitle.addEventListener("keydown", function(e){
+	if(e.key === "Enter") {
+		sortByTitle();
+	}
+});
+buttonSortByDate.addEventListener("keydown", function(e){
+	if(e.key === "Enter") {
+		sortByDate();
+	}
+});

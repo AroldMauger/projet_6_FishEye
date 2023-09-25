@@ -3,35 +3,43 @@ import {incrementLikes} from"../utils/likes.js";
 
 
 const urlParams = new URLSearchParams(window.location.search); // On récupère l'id de l'URL
-const photographerId = urlParams.get("id");
+const photographerId = urlParams.get("id");					   // On met l'id dans une variable photographerId
 const photographerHeader = document.querySelector(".photograph-header");
 const headerInfo = document.querySelector(".header-info");
 const mediasContainer = document.querySelector(".medias");
-
 const nameInModalContainer = document.querySelector(".name-in-contactModal");
 const dropDownFilters = document.querySelector(".dropdown_content");
 const chevronUp = document.querySelector(".fa-chevron-down");
 
-
-export async function fetchData() {
+// LA FONCTION RESPONSABLE DE LA RÉCUPÉRATION DES DONNÉES DEPUIS LE FICHIER JSON
+export async function fetchData() {						
 	const response = await fetch("/data/photographers.json"); 
 	return await response.json();
 }
 
-// Cette fonction va nous permettre d'économiser des lignes de code pour générer les éléments textuels du DOM
-function createTextualElements(tag, textContent, className) {  // Chaque élément textuel aura un tag (balise), un contenu "textContent", et une class facultative
+// Ici on définit les paramètres des fonctions qui dépendent de fetchData()
+fetchData().then(photographersData => {
+	displayPhotographerInfo(photographerId, photographersData);
+	displayPhotographerMedias(photographerId, photographersData);
+	incrementLikes(photographerId, photographersData);
+});
+
+/*FONCTION QUI GENERE LES ELEMENTS TEXTUELS (h1, h2, p)
+Chaque élément textuel aura un tag (balise), un contenu "textContent", et une class facultative*/
+function createTextualElements(tag, textContent, className) {  
 	const element = document.createElement(tag);
 	element.textContent = textContent;
 	if (className) element.classList.add(className);
 	return element;
 }
-// Fonction pour afficher les détails du photographe
+
+// FONCTION POUR AFFICHER LES DONNÉES DU PHOTOGRAPHE
 async function displayPhotographerInfo(id, photographersData) {
 
-	const photographer = photographersData.photographers.find(photographer => photographer.id === parseInt(id));
-
+	// On cherche dans le fichier JSON le photographe dont l'id correspond à l'id dans l'URL 
+	const photographer = photographersData.photographers.find(photographer => photographer.id === parseInt(id));  
 	if (!photographer) {
-		window.location.href = "index.html";
+		window.location.href = "index.html";				// Si le photographe n'existe pas, alors retour à la page d'accueil
 	} else {
 		// On affiche les informations du photographe
 		const namePhotographer = createTextualElements("h1", photographer.name, "name-in-header");
@@ -55,7 +63,7 @@ async function displayPhotographerInfo(id, photographersData) {
 		nameInModalContainer.appendChild(photographerNameInModal);
 
 		const modal = document.getElementById("contact_modal");
-		modal.setAttribute("aria-label", "Contact me " + photographer.name);
+		modal.setAttribute("aria-label", "Contact me " + photographer.name);  // Ajout de l'aria-label pour le formulaire de contact
 	}
 }
 // FONCTION QUI GENERE LES MEDIAS AU CHARGEMENT DE LA PAGE EN FONCTION DE L'ID DU PHOTOGRAPHE
@@ -65,30 +73,15 @@ export async function displayPhotographerMedias(id, photographersData) {
 	const mediasByPopularity = [...medias].sort((a, b) => a.likes - b.likes);
 	mediasContainer.innerHTML = "";
 	mediasByPopularity.forEach(media => {
-		if (media.photographerId === parseInt(photographerId)) {
-			
+		if (media.photographerId === parseInt(photographerId)) {   // parseInt permet de comparer des numbers
 			createCardElement(media);
 		}
 	});
-   
-	openLightboxPopularity();
-
+	openLightboxPopularity(); 
 }
 
-// Appels aux fonctions
-fetchData().then(photographersData => {
-	displayPhotographerInfo(photographerId, photographersData);
-	displayPhotographerMedias(photographerId, photographersData);
-	incrementLikes(photographerId, photographersData);
-});
-
-
-// Evenement au clic sur le bouton des filtres
-
-
-
+// FONCTION QUI GENERE CHACUN DES MEDIAS SOUS LA FORME DE CARD
 export function createCardElement(media) {
-	
 
 	const divCardContainer = document.createElement("div");
 	divCardContainer.classList.add("div-card-container");
@@ -102,12 +95,6 @@ export function createCardElement(media) {
 		dropDownFilters.style.display = "none";
 		chevronUp.classList.remove("rotate");
 		dropDownFilters.setAttribute("aria-hidden", "true");
-	});
-
-	cardContainer.addEventListener("keydown", function(e) {
-		if(e.key === "Enter") {
-			openLightboxPopularity();
-		}
 	});
 
 	const likesContainer = document.createElement("div");
@@ -128,9 +115,9 @@ export function createCardElement(media) {
 	const likesButton = document.createElement("button");
 	likesButton.setAttribute("id", media.id); 
 	likesButton.classList.add("likes-button");
-	likesButton.setAttribute("liked", "false");    // cette ligne va permettre de gérer la resctriction de l'incrémentation des likes
+	likesButton.setAttribute("liked", "false");    // cette ligne va permettre de gérer la resctriction de l'incrémentation des likes dans likes.js
 	likesButton.setAttribute("role", "button");   
-	likesButton.setAttribute("tabindex", "0");
+	likesButton.setAttribute("tabindex", "0");    // likesButton pourra être focus avec les tabulations du clavier grâce à tabindex
 	
 	const heartIcone = document.createElement("i");
 	heartIcone.className ="fa-solid fa-heart";
