@@ -130,7 +130,6 @@ export function openLightboxName() {
 // MEDIA FACTORY QUI RENVOIE UNE BALISE <video> ou <img> EN FONCTION DU TYPE DE MEDIA
 function createMediaElementLightbox(currentMedia) {
     if(currentMedia.video) {
-
         const video = document.createElement("video");
         video.classList.add("lightbox_media_picture");
         video.setAttribute("controls", "true");

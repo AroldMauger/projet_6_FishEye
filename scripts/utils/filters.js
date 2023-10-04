@@ -63,7 +63,6 @@ export function changingCurrentFilter() {
 
       // Quand on clique sur un filtre, le nom du filtre actuel change et prend le nom du filtre cliqué
 			currentFilter.textContent = filter.textContent;
-
       // Ce filtre cliqué doit passer en display:none pour être masqué
 			if (selectedFilter) selectedFilter.style.display = "block";
 			selectedFilter = filter;

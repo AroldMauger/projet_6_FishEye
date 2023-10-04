@@ -12,7 +12,7 @@ const modal = document.getElementById("contact_modal");
 function displayModal() {
   modal.style.display = "block";
   modal.setAttribute("aria-hidden", "false");
-  closeButton.focus();
+  firstName.focus();
 }
 
 buttonHeader.addEventListener("click", displayModal);
@@ -32,8 +32,9 @@ function closeModal() {
 window.addEventListener('keydown', function(e){ 
 if (e.key === "Escape" || e.key === "Esc") {
   closeModal(e)
-}
-}) 
+  }
+});
+ 
 closeButton.addEventListener("keydown", function (event) {
   if (event.key === "Tab" && event.shiftKey) {
     event.preventDefault(); 
