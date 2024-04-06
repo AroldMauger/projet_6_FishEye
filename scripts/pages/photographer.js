@@ -13,7 +13,7 @@ const chevronUp = document.querySelector(".fa-chevron-down");
 
 // LA FONCTION RESPONSABLE DE LA RÉCUPÉRATION DES DONNÉES DEPUIS LE FICHIER JSON
 export async function fetchData() {						
-	const response = await fetch("data/photographers.json"); 
+	const response = await fetch("./data/photographers.json"); 
 	return await response.json();
 }
 
